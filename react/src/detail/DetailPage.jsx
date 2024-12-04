@@ -13,7 +13,6 @@ function DetailPage() {
       return;
     }
 
-    // 현재 위치 가져오기
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude: userLat, longitude: userLon } = position.coords;
@@ -62,6 +61,43 @@ function DetailPage() {
     return deg * (Math.PI / 180);
   }
 
+  const openMap = (type) => {
+    if (!navigator.geolocation) {
+      setStatusMessage('Geolocation을 지원하지 않는 브라우저입니다.');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude: userLat, longitude: userLon } = position.coords;
+        const destLat = parseFloat(data['위도']);
+        const destLon = parseFloat(data['경도']);
+
+        let url = '';
+        switch (type) {
+          case 'naver':
+            url = `https://map.naver.com/v5/directions/-/${userLat},${userLon}/place/${destLat},${destLon}`;
+            break;
+          case 'google':
+            url = `https://www.google.com/maps/dir/${userLat},${userLon}/${destLat},${destLon}`;
+            break;
+          case 'kakao':
+            url = `https://map.kakao.com/link/map/route/${userLat},${userLon}/${destLat},${destLon}`;
+            break;
+          default:
+            console.error('지원되지 않는 맵 타입입니다.');
+        }
+
+        if (url) {
+          window.open(url, '_blank');
+        }
+      },
+      () => {
+        setStatusMessage('현재 위치를 가져올 수 없습니다.');
+      }
+    );
+  };
+
   if (!data) {
     return <p>잘못된 접근입니다. 다시 시도해주세요.</p>;
   }
@@ -97,6 +133,13 @@ function DetailPage() {
         이 축제에 방문했어요!
       </button>
       {statusMessage && <p className="status-message">{statusMessage}</p>}
+
+      <div className="map-buttons">
+        <h2>길 찾기</h2>
+        {/* <button onClick={() => openMap('naver')}>네이버 지도</button> */}
+        <button onClick={() => openMap('google')}>구글 지도</button>
+        {/* <button onClick={() => openMap('kakao')}>카카오 지도</button> */}
+      </div>
     </div>
   );
 }
