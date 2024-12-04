@@ -1,11 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // React Router 가져오기
-import Home from './Home/homeMain'; // Home 컴포넌트 가져오기
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeMain from './home/HomeMain';
+import DetailPage from './detail/DetailPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} /> {/* Home 경로 설정 */}
+        <Route path="/" element={<HomeMain />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
     </Router>
   );
