@@ -45,7 +45,7 @@ function Search() {
             status = '종료됨';
           }
 
-          return { ...location, status }; // id: index 제거
+          return { ...location, status };
         });
 
         setLocations(enrichedLocations);
@@ -54,6 +54,8 @@ function Search() {
         setError('Failed to fetch festival data.');
       }
     };
+
+    console.log('data:', locations);
 
     fetchLocations();
   }, []);
@@ -94,7 +96,7 @@ function Search() {
             status = '종료됨';
           }
 
-          return { ...festival, status }; // 서버에서 받은 id를 그대로 사용
+          return { ...festival, status };
         });
 
         setFestivals(enrichedFestivals);
@@ -111,12 +113,13 @@ function Search() {
 
   useEffect(() => {
     if (query) {
-      const filterLocations = locations.filter((filterLocation) =>
-        filterLocation.title.toLowerCase().includes(query.toLowerCase())
+      const filterLocations = locations.filter(
+        (filterLocation) =>
+          filterLocation.title && filterLocation.title.includes(query)
       );
       setFilteredLocations(filterLocations);
     } else {
-      setFilteredLocations(locations); // query가 없을 경우 전체 데이터 표시
+      setFilteredLocations(locations);
     }
   }, [query, locations]);
 
