@@ -2,14 +2,41 @@ import React from 'react';
 import './LocationCard.css';
 
 function LocationCard({ location, onClick }) {
+  const today = new Date();
+
+  const getStatus = () => {
+    const startDate = new Date(location.start_date);
+    const endDate = new Date(location.end_date);
+
+    if (today > endDate) {
+      return '종료됨';
+    } else if (today >= startDate) {
+      return '진행 중';
+    } else {
+      const differenceInDays = Math.ceil(
+        (startDate - today) / (1000 * 60 * 60 * 24)
+      );
+      return `D-${differenceInDays}`;
+    }
+  };
+
+  const status = getStatus();
+
   return (
     <div className="location-card" onClick={onClick}>
-      <h2 className="card-title">{location.title}</h2>
-      <p className="card-dates">
-        {location.start_date} ~ {location.end_date}
-      </p>
-      <p className="card-status">{location.status}</p>
-      <p className="card-address">{location.location}</p>
+      <div className="card-image">
+        <img src={location.image_url} alt={location.title} />
+      </div>
+      <div className="card-content">
+        <h2 className="card-title">{location.title}</h2>
+        <p className="card-dates">
+          {location.start_date} ~ {location.end_date}
+        </p>
+        <p className={`card-status ${status.replace(' ', '').toLowerCase()}`}>
+          {status}
+        </p>
+        <p className="card-address">{location.location || '위치 정보 없음'}</p>
+      </div>
     </div>
   );
 }
