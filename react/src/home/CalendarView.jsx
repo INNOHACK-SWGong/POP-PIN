@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import { useNavigate } from 'react-router-dom';
 import './CalendarView.css';
 
 function CalendarView({ events }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [hoveredDate, setHoveredDate] = useState(null);
+  const navigate = useNavigate();
 
   const getTodayDate = () => {
     const today = new Date();
@@ -13,8 +15,8 @@ function CalendarView({ events }) {
 
   const tileContent = ({ date }) => {
     const dailyEvents = events.filter((event) => {
-      const startDate = new Date(event['축제시작일자']);
-      const endDate = new Date(event['축제종료일자']);
+      const startDate = new Date(event.start_date);
+      const endDate = new Date(event.end_date);
       return date >= startDate && date <= endDate;
     });
 
@@ -35,10 +37,14 @@ function CalendarView({ events }) {
     setSelectedDate(date);
   };
 
+  const handleEventClick = (event) => {
+    navigate(`/detail/${event.id}`, { state: event });
+  };
+
   const eventsOnSelectedDate = selectedDate
     ? events.filter((event) => {
-        const startDate = new Date(event['축제시작일자']);
-        const endDate = new Date(event['축제종료일자']);
+        const startDate = new Date(event.start_date);
+        const endDate = new Date(event.end_date);
         return selectedDate >= startDate && selectedDate <= endDate;
       })
     : [];
@@ -54,19 +60,19 @@ function CalendarView({ events }) {
           <div className="hover-popup">
             <h4>{hoveredDate.toDateString()}</h4>
             {events.filter((event) => {
-              const startDate = new Date(event['축제시작일자']);
-              const endDate = new Date(event['축제종료일자']);
+              const startDate = new Date(event.start_date);
+              const endDate = new Date(event.end_date);
               return hoveredDate >= startDate && hoveredDate <= endDate;
             }).length > 0 ? (
               <ul>
                 {events
                   .filter((event) => {
-                    const startDate = new Date(event['축제시작일자']);
-                    const endDate = new Date(event['축제종료일자']);
+                    const startDate = new Date(event.start_date);
+                    const endDate = new Date(event.end_date);
                     return hoveredDate >= startDate && hoveredDate <= endDate;
                   })
                   .map((event, index) => (
-                    <li key={index}>{event['축제명']}</li>
+                    <li key={index}>{event.title}</li>
                   ))}
               </ul>
             ) : (
@@ -78,17 +84,35 @@ function CalendarView({ events }) {
       <div className="selected-events-container">
         <h4>
           {selectedDate
-            ? `${selectedDate.toDateString()} 축제`
+            ? `${selectedDate.getFullYear()}년 ${
+                selectedDate.getMonth() + 1
+              }월 ${selectedDate.getDate()}일 축제`
             : '날짜를 선택해주세요'}
         </h4>
+
         {eventsOnSelectedDate.length > 0 ? (
-          <ul>
-            {eventsOnSelectedDate.map((event, index) => (
-              <li key={index}>
-                <strong>{event['축제명']}</strong> - {event['개최장소']}
-              </li>
+          <div className="event-cards">
+            {eventsOnSelectedDate.map((event) => (
+              <div
+                key={event.id}
+                className="event-card"
+                onClick={() => handleEventClick(event)}
+              >
+                <div className="event-details">
+                  <h5 className="event-title">{event.title}</h5>
+                  <p className="event-dates">
+                    {event.start_date} ~ {event.end_date}
+                  </p>
+                  <p className="event-location">{event.location}</p>
+                </div>
+                <img
+                  src={event.image_url}
+                  alt={event.title}
+                  className="event-image"
+                />
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p>이 날짜에 해당하는 축제가 없습니다.</p>
         )}

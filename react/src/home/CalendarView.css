@@ -1,7 +1,7 @@
 .calendar-container {
   position: relative;
   /* margin: 20px; */
-  width: 50%;
+  width: 40%;
 }
 
 .react-calendar {
@@ -21,6 +21,7 @@
   transition: all 0.3s ease;
   height: 50px;
   border: 1px solid #ffeee4;
+  cursor: pointer;
 }
 
 .react-calendar__tile:enabled:hover {
@@ -164,11 +165,30 @@
 }
 
 .selected-events-container {
-  width: 40%;
-  /* background: #ffeee4; */
+  width: 50%;
   padding: 20px;
-  /* border-radius: 12px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 400px; /* 높이 고정 */
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  overflow-x: hidden; /* 가로 스크롤 숨김 */
+  scrollbar-width: thin; /* 스크롤바 두께 조절 (Firefox 전용) */
+  scrollbar-color: #f17f42 #ffeee4; /* 스크롤바 색상 (Firefox 전용) */
+}
+
+/* 스크롤바 스타일링 (Chrome, Edge, Safari) */
+.selected-events-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selected-events-container::-webkit-scrollbar-track {
+  background: #ffeee4;
+  border-radius: 10px;
+}
+
+.selected-events-container::-webkit-scrollbar-thumb {
+  background-color: #f17f42;
+  border-radius: 10px;
+  border: 2px solid #ffeee4;
 }
 
 .selected-events-container h4 {
@@ -186,4 +206,46 @@
 .selected-events-container li {
   margin-bottom: 10px;
   font-size: 16px;
+}
+
+.event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ffeee4;
+  border-radius: 8px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-image {
+  width: 80px; /* 이미지 너비 */
+  height: 80px; /* 이미지 높이 */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 10px; /* 내용과 이미지 사이 간격 */
+}
+
+.event-details {
+  flex: 1; /* 내용의 너비를 이미지와 함께 조정 */
+}
+
+.event-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.event-dates,
+.event-location {
+  font-size: 14px;
+  color: #555;
 }

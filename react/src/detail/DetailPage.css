@@ -1,43 +1,145 @@
-.detail-container {
-  margin: 50px auto;
-  max-width: 600px;
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.detail-container {
+  display: flex;
+  width: 800px;
   border: 1px solid #ddd;
   border-radius: 10px;
+  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  margin-bottom: 30px;
 }
 
-.detail-container h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #007bff;
+.detail-image {
+  flex: 1;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.detail-container p {
-  font-size: 1rem;
-  margin: 10px 0;
-  color: #333;
+.detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.check-in-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #007bff;
+.detail-info {
+  flex: 1.5;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.detail-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.map-section {
+  margin-top: 20px;
+}
+
+.map-button {
+  background-color: white;
+  color: black;
   border: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.check-in-button:hover {
-  background-color: #0056b3;
+.map-button img {
+  height: 20px; /* 이미지 높이 */
+  margin-right: 10px; /* 이미지와 텍스트 간격 */
 }
 
-.status-message {
+.map-button:hover {
+  background-color: #e8e8e8;
+}
+
+.search-buttons {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
-  font-size: 1.2rem;
+}
+
+.search-button-google,
+.search-button-naver {
+  /* background-color: #f17f42;
+  color: white; */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  margin: 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-button-google {
+  background-color: white;
+  color: black;
+}
+.search-button-naver {
+  background-color: #03c75a;
+  color: white;
+}
+
+.search-button-naver:hover {
+  background-color: #00a54a;
+}
+.search-button-google:hover {
+  background-color: #e8e8e8;
+}
+
+.calendar-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-date {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  margin: 0 5px;
+  border-radius: 5px;
+  font-size: 14px;
   font-weight: bold;
   color: #333;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.calendar-date.today {
+  border: 1px solid #f17f42;
+}
+
+.calendar-date.active {
+  background-color: #f17f42;
+  color: #fff;
 }
