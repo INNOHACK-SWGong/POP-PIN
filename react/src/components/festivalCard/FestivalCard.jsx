@@ -1,11 +1,8 @@
 // src/components/festivalCard/FestivalCard.jsx
 import React from 'react';
 import './FestivalCard.css';
-import { useNavigate } from 'react-router-dom';
 
-function FestivalCard({ festival }) {
-  const navigate = useNavigate();
-
+function FestivalCard({ festival, navigate }) {
   const {
     title,
     date,
@@ -19,12 +16,11 @@ function FestivalCard({ festival }) {
     status,
     id,
   } = festival;
+  // console.log(image_url);
 
   const handleDetailsClick = () => {
-    // 상세 페이지로 이동할 때, 축제 데이터를 URL 파라미터로 전달
-    navigate(
-      `/detail?festival=${encodeURIComponent(JSON.stringify(festival))}`
-    );
+    // 상세 페이지로 이동할 때, 축제의 id를 URL 파라미터로 전달
+    navigate(`/detail/${id}`);
   };
 
   return (
@@ -46,11 +42,7 @@ function FestivalCard({ festival }) {
         <p className="festival-status">
           <strong>상태:</strong> {status}
         </p>
-        <button
-          className="details-button"
-          onClick={handleDetailsClick}
-          aria-label={`${title} 상세 정보 보기`}
-        >
+        <button className="details-button" onClick={handleDetailsClick}>
           상세 정보 보기
         </button>
       </div>

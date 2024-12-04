@@ -29,14 +29,15 @@ function Search() {
         });
 
         const data = response.data;
+        console.log('data:', data);
 
         // 현재 날짜
         const currentDate = new Date();
 
-        // 받은 축제 데이터에 id와 status 추가
-        const enrichedFestivals = data.map((festival, index) => {
+        const enrichedFestivals = data.map((festival) => {
           const startDate = new Date(festival.start_date);
           const endDate = new Date(festival.end_date);
+          const currentDate = new Date();
 
           let status = '';
           if (currentDate >= startDate && currentDate <= endDate) {
@@ -50,7 +51,7 @@ function Search() {
             status = '종료됨';
           }
 
-          return { ...festival, id: index, status };
+          return { ...festival, status }; // 서버에서 받은 id를 그대로 사용
         });
 
         setFestivals(enrichedFestivals);
