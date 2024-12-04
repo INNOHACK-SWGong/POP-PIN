@@ -123,6 +123,7 @@ function Search() {
   return (
     <div className="search-page">
       <h1>검색 결과</h1>
+      <p>"{query}" 검색 결과</p>
       <div className="festivals-container">
         {filteredLocations &&
           filteredLocations.map((filteredLocation) => (
@@ -133,6 +134,7 @@ function Search() {
             />
           ))}
       </div>
+      <p>원하는 결과가 없나요?</p>
       {query ? (
         <p>"{query}"과 관련된 검색 결과를 아래에서 확인하세요.</p>
       ) : (
