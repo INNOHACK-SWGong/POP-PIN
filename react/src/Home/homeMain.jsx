@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './HomeMain.css';
 import Slider from './Slider';
 import LocationCard from './LocationCard';
-import CalendarView from './CalendarView';
+import CalendarView from './calendarView/CalendarView';
 
 function HomeMain() {
   const [locations, setLocations] = useState([]);

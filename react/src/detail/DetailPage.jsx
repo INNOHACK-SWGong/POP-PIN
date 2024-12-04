@@ -167,9 +167,11 @@ function DetailPage() {
       {/* 검색 버튼 */}
       <div className="search-buttons">
         <button className="search-button-google" onClick={openGoogleSearch}>
+          <img src="/google_logo.png" alt="logo" />
           Google에서 검색
         </button>
         <button className="search-button-naver" onClick={openNaverSearch}>
+          <img src="/naver_logo.png" alt="logo" />
           Naver에서 검색
         </button>
       </div>

@@ -1,0 +1,15 @@
+/* src/components/CalendarComponent/EventIndicator.css */
+.event-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: #f17f42; /* 마커 배경색 */
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px; /* 폰트 크기 증가 */
+  text-align: center;
+  border-radius: 50%; /* 동그란 마커 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}

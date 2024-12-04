@@ -95,6 +95,11 @@
   margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.search-button-google img,
+.search-button-naver img {
+  height: 20px; /* 이미지 높이 */
+  margin-right: 10px; /* 이미지와 텍스트 간격 */
+}
 
 .search-button-google {
   background-color: white;
