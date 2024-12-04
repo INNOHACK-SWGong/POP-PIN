@@ -28,19 +28,70 @@
   color: #fff;
 }
 
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f17f42; /* 네비게이션 배경색 */
+  border-radius: 8px;
+  color: #fff; /* 텍스트 색상 */
+}
+
+.react-calendar__navigation__label {
+  font-size: 18px; /* 현재 월/년도 표시 크기 */
+  font-weight: bold;
+  padding: 0 15px;
+}
+
 .react-calendar__navigation button {
-  background-color: #f17f42;
-  color: #fff;
+  background-color: transparent; /* 투명 배경 */
+  color: #fff; /* 버튼 텍스트 색상 */
   border: none;
-  width: 130px;
-  height: 40px;
-  font-size: 18px;
-  margin: 5px;
-  transition: background-color 0.3s ease;
+  font-size: 20px; /* 버튼 크기 */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .react-calendar__navigation button:hover {
-  background-color: #ce6d39; /* 버튼 호버 색상 */
+  color: #ffeee4; /* 버튼 호버 색상 */
+}
+
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* 동그란 버튼 */
+  background-color: #ce6d39; /* 이전/다음 버튼 배경색 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 */
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__navigation__prev-button:hover,
+.react-calendar__navigation__next-button:hover {
+  background-color: #f17f42; /* 호버 시 밝은 색 */
+}
+
+.react-calendar__navigation__prev-button::before,
+.react-calendar__navigation__next-button::before {
+  content: '';
+  display: inline-block;
+  border: solid #fff; /* 화살표 색 */
+  border-width: 0 3px 3px 0;
+  padding: 5px;
+}
+
+.react-calendar__navigation__prev-button::before {
+  transform: rotate(135deg); /* 왼쪽 화살표 */
+}
+
+.react-calendar__navigation__next-button::before {
+  transform: rotate(-45deg); /* 오른쪽 화살표 */
 }
 
 .react-calendar__tile--now {
