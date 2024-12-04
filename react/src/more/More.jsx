@@ -57,7 +57,8 @@ function More() {
       (filters.ongoing && status === '진행 중') ||
       (filters.ended && status === '종료됨');
 
-    return statusMatches; // 필터 상태에 맞는 항목만 반환
+    // 필터링된 상태가 true일 때만 해당 항목을 포함하도록 처리
+    return statusMatches;
   });
 
   // 필터 상태 변경 핸들러
