@@ -107,6 +107,30 @@
   color: #fff;
 }
 
+/* 일요일 스타일 */
+.react-calendar__month-view__weekdays__weekday:nth-child(7),
+.react-calendar__tile:nth-child(7n) {
+  color: rgb(255, 60, 60); /* 일요일 텍스트 색상 */
+  font-weight: bold;
+}
+
+/* 토요일 스타일 */
+.react-calendar__month-view__weekdays__weekday:nth-child(6),
+.react-calendar__tile:nth-child(7n + 6) {
+  color: rgb(95, 95, 255); /* 토요일 텍스트 색상 */
+  font-weight: bold;
+}
+
+/* 현재 월 외의 날짜 불투명도 적용 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.3; /* 불투명도 설정 */
+}
+
+/* 호버 시 효과 유지 */
+.react-calendar__month-view__days__day--neighboringMonth:hover {
+  opacity: 0.3; /* 호버 시 불투명도 유지 */
+}
+
 .event-marker {
   position: absolute;
   bottom: 8px;

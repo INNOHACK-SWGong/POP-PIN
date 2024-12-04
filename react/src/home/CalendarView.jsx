@@ -55,7 +55,12 @@ function CalendarView({ events }) {
         <Calendar
           tileContent={tileContent}
           onClickDay={(date) => handleDateClick(date)}
+          locale="ko-KR" // 한국어 로케일 설정
+          formatShortWeekday={(locale, date) =>
+            ['일', '월', '화', '수', '목', '금', '토'][date.getDay()]
+          }
         />
+
         {hoveredDate && (
           <div className="hover-popup">
             <h4>{hoveredDate.toDateString()}</h4>
