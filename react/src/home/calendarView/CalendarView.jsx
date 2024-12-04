@@ -80,7 +80,7 @@ function CalendarView({ events }) {
       </div>
 
       {/* Hover Popup */}
-      {hoveredDate && (
+      {/* {hoveredDate && (
         <div className="hover-popup">
           <h4>{hoveredDate.toLocaleDateString('ko-KR')}</h4>
           {eventsOnHoveredDate.length > 0 ? (
@@ -93,7 +93,7 @@ function CalendarView({ events }) {
             <p>이 날에 해당하는 축제가 없습니다.</p>
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

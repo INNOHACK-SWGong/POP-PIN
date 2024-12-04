@@ -7,14 +7,17 @@ function LocationCard({ location, onClick, isEndingSoon }) {
   const getStatus = () => {
     const startDate = new Date(location.start_date);
     const endDate = new Date(location.end_date);
-    
+
     // "filterEndingSoonFestivals"일 때 다른 로직 적용
     if (isEndingSoon) {
       if (today >= startDate && today <= endDate) {
         const differenceInDays = Math.ceil(
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
-        return { status: '진행중', alternativeStatus: `종료 D-${differenceInDays - 1}` };
+        return {
+          status: '진행 중',
+          alternativeStatus: `종료 D-${differenceInDays - 1}`,
+        };
       } else if (today > endDate) {
         return { status: '종료됨', alternativeStatus: null };
       } else {
@@ -24,7 +27,10 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         const differenceInDays1 = Math.ceil(
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
-        return { status: `시작 D-${differenceInDays - 1}`, alternativeStatus: `종료 D-${differenceInDays1 - 1}` };;
+        return {
+          status: `시작 D-${differenceInDays - 1}`,
+          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+        };
       }
     } else {
       // 기본 로직
@@ -34,7 +40,10 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         const differenceInDays1 = Math.ceil(
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
-        return { status: '진행 중',  alternativeStatus: `종료 D-${differenceInDays1 - 1}` };
+        return {
+          status: '진행 중',
+          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+        };
       } else {
         const differenceInDays = Math.ceil(
           (startDate - today) / (1000 * 60 * 60 * 24)
@@ -42,7 +51,10 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         const differenceInDays1 = Math.ceil(
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
-        return { status: `시작 D-${differenceInDays - 1}`,  alternativeStatus: `종료 D-${differenceInDays1 - 1}` };
+        return {
+          status: `시작 D-${differenceInDays - 1}`,
+          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+        };
       }
     }
   };
@@ -61,9 +73,7 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         <p className={`card-status ${status.replace(' ', '').toLowerCase()}`}>
           {status}
         </p>
-        <p className={"card-status"}>
-          {alternativeStatus}
-        </p>
+        <p className={'card-status'}>{alternativeStatus}</p>
         <p className="card-address">{location.location || '위치 정보 없음'}</p>
       </div>
     </div>
