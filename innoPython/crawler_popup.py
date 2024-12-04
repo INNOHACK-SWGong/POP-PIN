@@ -1,132 +1,36 @@
-import os
-import requests
-from bs4 import BeautifulSoup
-import json
-import re
-from datetime import datetime
-from dotenv import load_dotenv
+from playwright.sync_api import sync_playwright
 
-# .env 파일 로드
-load_dotenv()
+def scrape_popup_info():
+    with sync_playwright() as p:
+        # 브라우저 실행
+        browser = p.chromium.launch(headless=True)  # True로 하면 헤드리스 모드, False는 화면을 표시
+        page = browser.new_page()
 
-# API 키 확인
-kakao_api_key = os.getenv("KAKAO_API_KEY")
-if not kakao_api_key:
-    print("Kakao API Key가 로드되지 않았습니다.")
-    exit(1)  # API 키가 없으면 프로그램 종료
+        # 페이지 열기
+        page.goto("https://www.popply.co.kr/popup/search?query=%EB%B6%80%EC%82%B0&status=all&fromDate=2024-12-04&toDate=2024-12-04")
 
-def fetch_page(url):
-    """URL에 GET 요청을 보내 HTML 응답을 반환"""
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.text
-        else:
-            print(f"페이지 요청 실패: {url}, 상태 코드: {response.status_code}")
-            return None
-    except Exception as e:
-        print(f"페이지 요청 중 오류 발생: {e}")
-        return None
-    
-def get_kakao_lat_lon(location_name):
-    """카카오 API로 위도와 경도 가져오기"""
-    headers = {"Authorization": f"KakaoAK {kakao_api_key}"}
-    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
-    params = {"query": location_name}
+        # 페이지가 완전히 로드될 때까지 대기 (선택자에 맞춰 대기)
+        page.wait_for_selector('.popup-name')  # 팝업 이름이 로드될 때까지 대기
 
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        if data['documents']:
-            location = data['documents'][0]
-            latitude = location['y']  # 위도
-            longitude = location['x']  # 경도
-            return float(latitude), float(longitude)
-        else:
-            print(f"'{location_name}'에 대한 결과가 없습니다.")
-    else:
-        print(f"요청 실패: {response.status_code}, {response.text}")
+        # 팝업 정보 크롤링
+        popup_names = page.query_selector_all('.popup-name')  # 팝업 이름 추출
+        popup_locations = page.query_selector_all('.popup-location')  # 팝업 위치 추출
+        popup_dates = page.query_selector_all('.popup-date')  # 팝업 날짜 추출
 
-    return None, None
+        # 추출된 데이터를 출력
+        for i in range(len(popup_names)):
+            name = popup_names[i].inner_text().strip()  # 팝업 이름
+            location = popup_locations[i].inner_text().strip()  # 팝업 위치
+            date = popup_dates[i].inner_text().strip()  # 팝업 날짜
 
-def fetch_popup_details(detail_url):
-    """상세 페이지에서 위치와 위도/경도를 추출"""
-    original_location = "정보 없음"
-    lat, lon = None, None
-    try:
-        html = fetch_page(detail_url)
-        if not html:
-            return original_location, lat, lon
+            # 출력
+            print(f"팝업 이름: {name}")
+            print(f"위치: {location}")
+            print(f"날짜: {date}")
+            print("-" * 40)  # 구분선
 
-        detail_soup = BeautifulSoup(html, 'html.parser')
-        location_tags = detail_soup.find_all(text=True)
+        # 브라우저 닫기
+        browser.close()
 
-        # Kakao API를 사용하여 위도/경도 변환
-        if original_location:
-            lat, lon = get_kakao_lat_lon(original_location)
-    except Exception as e:
-        print(f"상세 페이지 요청 실패: {e}")
-
-    return original_location, lat, lon
-
-def crawl_popup(url):
-    """팝업 정보를 크롤링하여 JSON 파일로 저장"""
-    base_url = "https://www.popply.co.kr/popup/search?fromDate=2024-12-01&toDate=2024-12-31&address1=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C"
-    popups = []
-
-    start_page = 1
-    while True:
-        list_url = f""
-        print(f"요청 중: {list_url}")
-
-        html = fetch_page(list_url)
-        if not html:
-            break
-
-        soup = BeautifulSoup(html, 'html.parser')
-        popups_div = soup.find('div', class_='')
-        if not popups_div:
-            break
-
-        popup_list = popups_div.find('ul', id='playlist').find_all('li')
-        if not popup_list:
-            print(f"페이지 {start_page}에 데이터 없음. 크롤링 종료.")
-            break
-
-        for popup in popup_list:
-            title = popup.find('p', class_='tit').text.strip()
-            date = popup.find('p', class_='cont').text.strip()
-            detail_url = "" + popup.find('a')['href']
-            image_url = "" + popup.find('p', class_='imgwrap').find('img')['src']
-
-            try:
-                start_date, end_date = date.split(" ~ ")
-                start_date_obj = datetime.strptime(start_date.strip(), "%Y-%m-%d")
-                end_date_obj = datetime.strptime(end_date.strip(), "%Y-%m-%d")
-            except Exception as e:
-                print(f"날짜 처리 실패: {e}")
-                start_date_obj, end_date_obj = None, None
-
-            original_location, geocode_location, lat, lon = fetch_popup_details(detail_url)
-
-            popups.append({
-                "title": title,
-                "date": date,
-                "start_date": start_date_obj.strftime("%Y-%m-%d") if start_date_obj else None,
-                "end_date": end_date_obj.strftime("%Y-%m-%d") if end_date_obj else None,
-                "original_location": original_location,
-                "latitude": lat,
-                "longitude": lon,
-                "image_url": image_url
-            })
-
-        start_page += 1
-
-    # JSON 파일로 저장
-    with open("popups.json", "w", encoding="utf-8") as f:
-        json.dump(popups, f, ensure_ascii=False, indent=4)
-
-    print("팝업 정보가 popups.json 파일에 저장되었습니다.")
-
-if __name__ == "__main__":
-    crawl_popup()
+# 실행
+scrape_popup_info()
