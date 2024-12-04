@@ -6,6 +6,8 @@
         "start_date": "2024-12-01",
         "end_date": "2024-12-31",
         "location": "부산광역시 부산진구 서면로 39 KT&G 상상마당부산",
+        "latitude": 35.1542730826014,
+        "longitude": 129.057501136005,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3ac2a76a%2C4082%2C425a%2C8136%2C8fa5310bbabb"
     },
     {
@@ -15,6 +17,8 @@
         "start_date": "2024-10-11",
         "end_date": "2024-12-08",
         "location": "부산광역시 수영구 민락수변로17번길 56 밀락더마켓 2층 밀락더마켓 2층",
+        "latitude": 35.1542799667248,
+        "longitude": 129.127000968254,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3f06a476%2Cf51c%2C4944%2C8ee3%2Ca59b456b7c70"
     },
     {
@@ -24,6 +28,8 @@
         "start_date": "2024-11-29",
         "end_date": "2024-12-08",
         "location": "부산 동구 범일로 125 커넥트 현대 부산 지하2층",
+        "latitude": 35.14130151736924,
+        "longitude": 129.05857440867092,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/bb8323c3%2Cdd5a%2C490e%2C93b9%2C473480d285e6"
     },
     {
@@ -33,6 +39,8 @@
         "start_date": "2024-11-09",
         "end_date": "2024-12-29",
         "location": "부산 기장군 장안읍 정관로 1133 부산 프리미엄 아울렛",
+        "latitude": 35.32379786911141,
+        "longitude": 129.23509023129526,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/153ca5e9%2C6cf8%2C4690%2C9ffe%2C38ff5e4d6d3f"
     },
     {
@@ -42,6 +50,8 @@
         "start_date": "2024-11-22",
         "end_date": "2024-12-29",
         "location": "부산 기장군 기장읍 기장해안로 147 롯데프리미엄아울렛 동부산점 2층",
+        "latitude": 35.19166083470112,
+        "longitude": 129.21254446105058,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/5d740b17%2C6e59%2C4523%2Ca476%2C9a29ca59264e"
     },
     {
@@ -51,6 +61,8 @@
         "start_date": "2024-12-01",
         "end_date": "2024-12-31",
         "location": "부산광역시 부산진구 서면로 39 KT&G 상상마당부산",
+        "latitude": 35.1542730826014,
+        "longitude": 129.057501136005,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3ac2a76a%2C4082%2C425a%2C8136%2C8fa5310bbabb"
     },
     {
@@ -60,6 +72,8 @@
         "start_date": "2024-10-11",
         "end_date": "2024-12-08",
         "location": "부산광역시 수영구 민락수변로17번길 56 밀락더마켓 2층 밀락더마켓 2층",
+        "latitude": 35.1542799667248,
+        "longitude": 129.127000968254,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3f06a476%2Cf51c%2C4944%2C8ee3%2Ca59b456b7c70"
     },
     {
@@ -69,6 +83,8 @@
         "start_date": "2024-11-29",
         "end_date": "2024-12-08",
         "location": "부산 동구 범일로 125 커넥트 현대 부산 지하2층",
+        "latitude": 35.14130151736924,
+        "longitude": 129.05857440867092,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/bb8323c3%2Cdd5a%2C490e%2C93b9%2C473480d285e6"
     },
     {
@@ -78,6 +94,8 @@
         "start_date": "2024-11-09",
         "end_date": "2024-12-29",
         "location": "부산 기장군 장안읍 정관로 1133 부산 프리미엄 아울렛",
+        "latitude": 35.32379786911141,
+        "longitude": 129.23509023129526,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/153ca5e9%2C6cf8%2C4690%2C9ffe%2C38ff5e4d6d3f"
     },
     {
@@ -87,6 +105,8 @@
         "start_date": "2024-11-22",
         "end_date": "2024-12-29",
         "location": "부산 기장군 기장읍 기장해안로 147 롯데프리미엄아울렛 동부산점 2층",
+        "latitude": 35.19166083470112,
+        "longitude": 129.21254446105058,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/5d740b17%2C6e59%2C4523%2Ca476%2C9a29ca59264e"
     },
     {
@@ -96,6 +116,8 @@
         "start_date": "2024-12-01",
         "end_date": "2024-12-31",
         "location": "부산광역시 부산진구 서면로 39 KT&G 상상마당부산",
+        "latitude": 35.1542730826014,
+        "longitude": 129.057501136005,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3ac2a76a%2C4082%2C425a%2C8136%2C8fa5310bbabb"
     },
     {
@@ -105,6 +127,8 @@
         "start_date": "2024-10-11",
         "end_date": "2024-12-08",
         "location": "부산광역시 수영구 민락수변로17번길 56 밀락더마켓 2층 밀락더마켓 2층",
+        "latitude": 35.1542799667248,
+        "longitude": 129.127000968254,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/3f06a476%2Cf51c%2C4944%2C8ee3%2Ca59b456b7c70"
     },
     {
@@ -114,6 +138,8 @@
         "start_date": "2024-12-18",
         "end_date": "2024-12-30",
         "location": "서울 송파구 올림픽로 300 롯데월드몰 지하1층 트레비 광장",
+        "latitude": 37.51401684559573,
+        "longitude": 127.10506857715367,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/ff89e828%2C84ac%2C447c%2C8ecf%2Cca8c9b6dd44b"
     },
     {
@@ -123,6 +149,8 @@
         "start_date": "2024-12-13",
         "end_date": "2024-12-25",
         "location": "부산 중구 용두산길 37-55 용두산공원 종각 앞",
+        "latitude": null,
+        "longitude": null,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/47cdcef0%2C8321%2C4edd%2Ca02c%2C8bbaf005afee"
     },
     {
@@ -132,6 +160,8 @@
         "start_date": "2024-12-13",
         "end_date": "2025-02-09",
         "location": "부산 수영구 민락수변로17번길 56 밀락 더 마켓 2층",
+        "latitude": 35.1542799667248,
+        "longitude": 129.127000968254,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/31c73e8b%2Cfc0a%2C4cc3%2C92cc%2C2115495eb359"
     },
     {
@@ -141,6 +171,8 @@
         "start_date": "2023-12-08",
         "end_date": "2023-12-17",
         "location": "부산광역시 해운대구 센텀남대로 35 신세계백화점센텀시티점 B2F",
+        "latitude": 35.16864392798528,
+        "longitude": 129.12907174004943,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/e224e3ae%2C708c%2C477b%2Cae68%2C7fc6b95b7d36"
     },
     {
@@ -150,6 +182,8 @@
         "start_date": "2023-12-08",
         "end_date": "2024-01-04",
         "location": "부산광역시 중구 광복로 62 카카오프렌즈 부산플래그십 스토어",
+        "latitude": 35.099036117395,
+        "longitude": 129.031590402483,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/1979b919%2C796f%2C43ff%2C92da%2Cc123a21c55b5"
     },
     {
@@ -159,6 +193,8 @@
         "start_date": "2023-12-16",
         "end_date": "2023-12-31",
         "location": "부산광역시 중구 중앙대로 2 롯데백화점광복점 B1F 아쿠아몰",
+        "latitude": 35.0979734382992,
+        "longitude": 129.03638097609905,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/466c25db%2Cbc3f%2C4e28%2Ca49a%2C54db6796505d"
     },
     {
@@ -168,6 +204,8 @@
         "start_date": "2024-11-22",
         "end_date": "2024-12-01",
         "location": "부산광역시 부산진구 가야대로 772 롯데백화점부산본점",
+        "latitude": 35.15679136281396,
+        "longitude": 129.05641460694002,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/d0b1fcef%2C61ed%2C447c%2C95fe%2C4d66e2eba789"
     },
     {
@@ -177,6 +215,8 @@
         "start_date": "2024-06-25",
         "end_date": "2024-12-01",
         "location": "부산광역시 동래구 우장춘로 175 부산해양자연사박물관 기획전시실(2관 3층) 기획전시실(2관 3층)",
+        "latitude": 35.2218081163841,
+        "longitude": 129.075839921274,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/5f737d58%2Cae5e%2C490f%2C9e59%2C0703839a0c7d"
     },
     {
@@ -186,6 +226,8 @@
         "start_date": "2023-12-08",
         "end_date": "2023-12-17",
         "location": "부산광역시 해운대구 센텀남대로 35 신세계백화점센텀시티점 B2F",
+        "latitude": 35.16864392798528,
+        "longitude": 129.12907174004943,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/e224e3ae%2C708c%2C477b%2Cae68%2C7fc6b95b7d36"
     },
     {
@@ -195,6 +237,8 @@
         "start_date": "2023-12-08",
         "end_date": "2024-01-04",
         "location": "부산광역시 중구 광복로 62 카카오프렌즈 부산플래그십 스토어",
+        "latitude": 35.099036117395,
+        "longitude": 129.031590402483,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/1979b919%2C796f%2C43ff%2C92da%2Cc123a21c55b5"
     },
     {
@@ -204,6 +248,8 @@
         "start_date": "2023-12-16",
         "end_date": "2023-12-31",
         "location": "부산광역시 중구 중앙대로 2 롯데백화점광복점 B1F 아쿠아몰",
+        "latitude": 35.0979734382992,
+        "longitude": 129.03638097609905,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/466c25db%2Cbc3f%2C4e28%2Ca49a%2C54db6796505d"
     },
     {
@@ -213,6 +259,8 @@
         "start_date": "2024-11-22",
         "end_date": "2024-12-01",
         "location": "부산광역시 부산진구 가야대로 772 롯데백화점부산본점",
+        "latitude": 35.15679136281396,
+        "longitude": 129.05641460694002,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/d0b1fcef%2C61ed%2C447c%2C95fe%2C4d66e2eba789"
     },
     {
@@ -222,6 +270,8 @@
         "start_date": "2024-06-25",
         "end_date": "2024-12-01",
         "location": "부산광역시 동래구 우장춘로 175 부산해양자연사박물관 기획전시실(2관 3층) 기획전시실(2관 3층)",
+        "latitude": 35.2218081163841,
+        "longitude": 129.075839921274,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/5f737d58%2Cae5e%2C490f%2C9e59%2C0703839a0c7d"
     },
     {
@@ -231,6 +281,8 @@
         "start_date": "2023-12-08",
         "end_date": "2023-12-17",
         "location": "부산광역시 해운대구 센텀남대로 35 신세계백화점센텀시티점 B2F",
+        "latitude": 35.16864392798528,
+        "longitude": 129.12907174004943,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/e224e3ae%2C708c%2C477b%2Cae68%2C7fc6b95b7d36"
     },
     {
@@ -240,6 +292,8 @@
         "start_date": "2023-12-08",
         "end_date": "2024-01-04",
         "location": "부산광역시 중구 광복로 62 카카오프렌즈 부산플래그십 스토어",
+        "latitude": 35.099036117395,
+        "longitude": 129.031590402483,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/1979b919%2C796f%2C43ff%2C92da%2Cc123a21c55b5"
     },
     {
@@ -249,6 +303,164 @@
         "start_date": "2023-12-16",
         "end_date": "2023-12-31",
         "location": "부산광역시 중구 중앙대로 2 롯데백화점광복점 B1F 아쿠아몰",
+        "latitude": 35.0979734382992,
+        "longitude": 129.03638097609905,
         "image_url": "https://cf-templates-1gyolugg9zn9q-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/store/466c25db%2Cbc3f%2C4e28%2Ca49a%2C54db6796505d"
-    }
+    },
+    [
+        {
+            "id": 29,
+            "title": "2025 부산 시민의 종 타종행사",
+            "date": "2024-12-31 ~ 2025-01-01",
+            "start_date": "2024-12-31",
+            "end_date": "2025-01-01",
+            "location": "중구 용두산공원(예정)",
+            "latitude": 35.10093050445418,
+            "longitude": 129.03244338014895,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/170894045595828.jpg"
+        },
+        {
+            "id": 30,
+            "title": "제11회 해운대 빛축제",
+            "date": "2024-12-12 ~ 2025-02-02",
+            "start_date": "2024-12-12",
+            "end_date": "2025-02-02",
+            "location": "해운대해수욕장, 해운대광장(구남로),해운대시장, 온천길 일원",
+            "latitude": 35.1585232170784,
+            "longitude": 129.159854668484,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/170867476687665.jpg"
+        },
+        {
+            "id": 31,
+            "title": "제37회 해운대 북극곰축제",
+            "date": "2024-12-06 ~ 2024-12-08",
+            "start_date": "2024-12-06",
+            "end_date": "2024-12-08",
+            "location": "해운대 해수욕장 일원",
+            "latitude": 35.1585232170784,
+            "longitude": 129.159854668484,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173139688456000.jpg"
+        },
+        {
+            "id": 32,
+            "title": "2024 부산국제주류&와인박람회",
+            "date": "2024-12-06 ~ 2024-12-08",
+            "start_date": "2024-12-06",
+            "end_date": "2024-12-08",
+            "location": "벡스코 제1전시장 1홀",
+            "latitude": 35.169120793278275,
+            "longitude": 129.13627678132798,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173207572322385.png"
+        },
+        {
+            "id": 33,
+            "title": "제 13회 부산MICE페스티벌 개최",
+            "date": "2024-12-04 ~ 2024-12-05",
+            "start_date": "2024-12-04",
+            "end_date": "2024-12-05",
+            "location": "벡스코 제1전시장 1층 2A홀 및 2층 214호",
+            "latitude": 35.169120793278275,
+            "longitude": 129.13627678132798,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173277876581796.jpg"
+        },
+        {
+            "id": 34,
+            "title": "「광안리 M 드론라이트쇼」 12월 공연 프로그램",
+            "date": "2024-12-02 ~ 2024-12-31",
+            "start_date": "2024-12-02",
+            "end_date": "2024-12-31",
+            "location": "정보 없음",
+            "latitude": null,
+            "longitude": null,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173258237207332.png"
+        },
+        {
+            "id": 35,
+            "title": "2024 부산국제아동도서전",
+            "date": "2024-11-28 ~ 2024-12-01",
+            "start_date": "2024-11-28",
+            "end_date": "2024-12-01",
+            "location": "벡스코 제1전시장 2홀",
+            "latitude": 35.169120793278275,
+            "longitude": 129.13627678132798,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/172532904618861.jpg"
+        },
+        {
+            "id": 36,
+            "title": "2024 광복로 겨울빛 트리축제",
+            "date": "2024-11-15 ~ 2025-02-02",
+            "start_date": "2024-11-15",
+            "end_date": "2025-02-02",
+            "location": "부산 광복로, 광복중앙로 일원 (동광동 및 부평동 일부 확대)",
+            "latitude": 35.09893072679021,
+            "longitude": 129.031963892713,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173145880285639.png"
+        },
+        {
+            "id": 37,
+            "title": "제1회 밀락루체페스타",
+            "date": "2024-11-02 ~ 2025-02-28",
+            "start_date": "2024-11-02",
+            "end_date": "2025-02-28",
+            "location": "수영구 민락수변공원 일대",
+            "latitude": 35.154940897926885,
+            "longitude": 129.13399667057104,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173156904094046.png"
+        },
+        {
+            "id": 38,
+            "title": "연제 꿈을 여는 오방 빛 축제",
+            "date": "2024-10-25 ~ 2025-02-10",
+            "start_date": "2024-10-25",
+            "end_date": "2025-02-10",
+            "location": "연제오방맛길 일원",
+            "latitude": 35.1871233017922,
+            "longitude": 129.085036095733,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/172966902084043.png"
+        },
+        {
+            "id": 39,
+            "title": "2024 해양레저시즌 기획전",
+            "date": "2024-10-12 ~ 2024-12-31",
+            "start_date": "2024-10-12",
+            "end_date": "2024-12-31",
+            "location": "정보 없음",
+            "latitude": null,
+            "longitude": null,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/173076984956640.jpg"
+        },
+        {
+            "id": 40,
+            "title": "서면 빛 축제",
+            "date": "2024-10-02 ~ 2025-01-10",
+            "start_date": "2024-10-02",
+            "end_date": "2025-01-10",
+            "location": "서면1번가 일원(중앙대로691번길 및 서면로 일원)",
+            "latitude": 35.1534447027718,
+            "longitude": 129.058415124719,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/172707611282960.jpg"
+        },
+        {
+            "id": 29,
+            "title": "2024 k-museums 공동기획전 <노릇노릇 부산>",
+            "date": "2024-06-25 ~ 2024-12-01",
+            "start_date": "2024-06-25",
+            "end_date": "2024-12-01",
+            "location": "해양자연사박물관 기획전시실(2관 3층)",
+            "latitude": 35.2218081163841,
+            "longitude": 129.075839921274,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/171832928290193.jpg"
+        },
+        {
+            "id": 30,
+            "title": "제19회 부산국제매직페스티벌",
+            "date": "2024-03-23 ~ 2024-12-15",
+            "start_date": "2024-03-23",
+            "end_date": "2024-12-15",
+            "location": "정보 없음",
+            "latitude": null,
+            "longitude": null,
+            "image_url": "https://www.visitbusan.net/upload_data/board_data/BBS_0000009/171772447266791.jpg"
+        }
+    ]
 ]

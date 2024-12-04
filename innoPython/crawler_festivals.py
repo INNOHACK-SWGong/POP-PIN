@@ -9,6 +9,12 @@ from dotenv import load_dotenv
 # .env 파일 로드
 load_dotenv()
 
+file_path = './popups.json'
+
+# JSON 파일을 열어서 데이터 읽기
+with open(file_path, 'r', encoding='utf-8') as file:
+    popups_json = json.load(file)
+
 # API 키 확인
 kakao_api_key = os.getenv("KAKAO_API_KEY")
 if not kakao_api_key:
@@ -89,7 +95,7 @@ def fetch_festival_details(detail_url):
     except Exception as e:
         print(f"상세 페이지 요청 실패: {e}")
 
-    return original_location, geocode_location, lat, lon
+    return original_location, lat, lon
 
 def crawl_festivals():
     """축제 정보를 크롤링하여 JSON 파일로 저장"""
@@ -115,7 +121,8 @@ def crawl_festivals():
             print(f"페이지 {start_page}에 데이터 없음. 크롤링 종료.")
             break
         
-        id = len(popups.json)
+        id = len(popups_json)+1
+        print("id=========" , id)
         
         for festival in festival_list:
             title = festival.find('p', class_='tit').text.strip()
@@ -132,7 +139,7 @@ def crawl_festivals():
                 print(f"날짜 처리 실패: {e}")
                 start_date_obj, end_date_obj = None, None
 
-            original_location, geocode_location, lat, lon = fetch_festival_details(detail_url)
+            original_location, lat, lon = fetch_festival_details(detail_url)
             
             festivals.append({
                 "id" : id,
@@ -141,7 +148,6 @@ def crawl_festivals():
                 "start_date": start_date_obj.strftime("%Y-%m-%d") if start_date_obj else None,
                 "end_date": end_date_obj.strftime("%Y-%m-%d") if end_date_obj else None,
                 "location": original_location,
-                "geocode_location": geocode_location,
                 "latitude": lat,
                 "longitude": lon,
                 "image_url": image_url
@@ -150,11 +156,14 @@ def crawl_festivals():
 
         start_page += 1
 
-    # JSON 파일 저장
-    with open("festivals.json", "w", encoding="utf-8") as f:
-        json.dump(festivals, f, ensure_ascii=False, indent=4)
+    popups_json.append(festivals)
 
-    print("축제 정보가 festivals.json 파일에 저장되었습니다.")
+    # # JSON 파일 저장
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(popups_json, f, ensure_ascii=False, indent=4)
+
+
+    print("축제 정보가 popups.json 파일에 저장되었습니다.")
 
 if __name__ == "__main__":
     crawl_festivals()
