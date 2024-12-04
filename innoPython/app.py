@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup
 import json
 import re
 from datetime import datetime
+from flask_cors import CORS
 import aiohttp
 import asyncio
 from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/festivals', methods=['GET'])
 async def get_festivals():
@@ -21,6 +23,7 @@ async def get_festivals():
 
     async def fetch_festival_details(session, detail_url):
         location = "정보 없음"
+        cleaned_location = None  # "일원", "일대" 제거 후 저장할 변수
         lat, lon = None, None
         try:
             html = await fetch(session, detail_url)
@@ -32,9 +35,13 @@ async def get_festivals():
                     location = re.search(r"장\s*소\s*:(.+)", text_str).group(1).strip()
                     break
 
+            # "일원" 및 "일대" 제거
+            if location:
+                cleaned_location = re.sub(r"(일원|일대)", "", location).strip()
+
             # Geopy를 사용하여 위도/경도 변환
             try:
-                geo = geolocator.geocode("부산 " + location)  # "부산"을 추가하여 정확도 향상
+                geo = geolocator.geocode("부산 " + cleaned_location)  # "부산"을 추가하여 정확도 향상
                 if geo:
                     lat, lon = geo.latitude, geo.longitude
             except Exception as e:
@@ -42,7 +49,8 @@ async def get_festivals():
         except Exception as e:
             print(f"상세 페이지 요청 실패: {e}")
 
-        return location, lat, lon
+        return cleaned_location, lat, lon
+
 
     async def process_page(session, start_page):
         # URL에 startPage를 앞쪽에 배치
