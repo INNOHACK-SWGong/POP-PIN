@@ -12,8 +12,51 @@ function Search() {
   const query = params.get('query');
 
   const [festivals, setFestivals] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [filteredLocations, setFilteredLocations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch festival data
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/festivals`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch festival data');
+        }
+        const data = await response.json();
+
+        const enrichedLocations = data.map((location) => {
+          const startDate = new Date(location.start_date);
+          const endDate = new Date(location.end_date);
+          const currentDate = new Date();
+
+          // 상태 추가 (진행 중 / D-Day 계산)
+          let status = '';
+          if (currentDate >= startDate && currentDate <= endDate) {
+            status = '진행 중';
+          } else if (currentDate < startDate) {
+            const dDay = Math.ceil(
+              (startDate - currentDate) / (1000 * 60 * 60 * 24)
+            );
+            status = `D-${dDay}`;
+          } else {
+            status = '종료됨';
+          }
+
+          return { ...location, status }; // id: index 제거
+        });
+
+        setLocations(enrichedLocations);
+      } catch (err) {
+        console.error(err);
+        setError('Failed to fetch festival data.');
+      }
+    };
+
+    fetchLocations();
+  }, []);
 
   useEffect(() => {
     if (!query) return;
@@ -66,11 +109,32 @@ function Search() {
     fetchFestivals();
   }, [query]);
 
+  useEffect(() => {
+    if (query) {
+      const filterLocations = locations.filter((filterLocation) =>
+        filterLocation.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredLocations(filterLocations);
+    } else {
+      setFilteredLocations(locations); // query가 없을 경우 전체 데이터 표시
+    }
+  }, [query, locations]);
+
   return (
     <div className="search-page">
       <h1>검색 결과</h1>
+      <div className="festivals-container">
+        {filteredLocations &&
+          filteredLocations.map((filteredLocation) => (
+            <FestivalCard
+              key={filteredLocation.id}
+              festival={filteredLocation}
+              navigate={navigate}
+            />
+          ))}
+      </div>
       {query ? (
-        <p>"{query}"에 대한 검색 결과를 아래에서 확인하세요.</p>
+        <p>"{query}"과 관련된 검색 결과를 아래에서 확인하세요.</p>
       ) : (
         <p>검색어를 입력해 주세요.</p>
       )}

@@ -28,18 +28,18 @@ function FestivalCard({ festival, navigate }) {
       <img
         src={image_url}
         alt={title}
-        className="festival-image"
+        className="festival-card-image"
         loading="lazy"
       />
-      <div className="festival-details">
-        <h2 className="festival-title">{title}</h2>
-        <p className="festival-date">
+      <div className="festival-card-details">
+        <h2 className="festival-card-title">{title}</h2>
+        <p className="festival-card-date">
           <strong>날짜:</strong> {date}
         </p>
-        <p className="festival-location">
+        <p className="festival-card-location">
           <strong>위치:</strong> {location || '정보 없음'}
         </p>
-        <p className="festival-status">
+        <p className="festival-card-status">
           <strong>상태:</strong> {status}
         </p>
         <button className="details-button" onClick={handleDetailsClick}>
