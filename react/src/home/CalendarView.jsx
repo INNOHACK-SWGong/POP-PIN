@@ -85,7 +85,7 @@ function CalendarView({ events }) {
           <ul>
             {eventsOnSelectedDate.map((event, index) => (
               <li key={index}>
-                <strong>{event.title}</strong> - {event.location}
+                <strong>{event.title}</strong> - {event.end_date}까지
               </li>
             ))}
           </ul>
