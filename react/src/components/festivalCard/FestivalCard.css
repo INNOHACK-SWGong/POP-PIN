@@ -1,0 +1,69 @@
+/* src/components/festivalCard/FestivalCard.css */
+
+.festival-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.festival-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.festival-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.festival-details {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.festival-title {
+  font-size: 1.2rem;
+  color: #333333;
+  margin: 0;
+}
+
+.festival-date,
+.festival-location,
+.festival-status {
+  font-size: 1rem;
+  color: #555555;
+}
+
+.festival-status {
+  font-weight: bold;
+}
+
+.details-button {
+  margin-top: auto;
+  padding: 8px 12px;
+  background-color: #f17f42;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.details-button:hover {
+  background-color: #ce6d39;
+  transform: scale(1.05);
+}
+
+.details-button:active {
+  background-color: #bf6935;
+  transform: scale(1);
+}

@@ -1,22 +1,93 @@
 // src/pages/Search/Search.jsx
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import FestivalCard from '../components/festivalCard/FestivalCard';
 import './Search.css';
 
 function Search() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const query = params.get('query');
+
+  const [festivals, setFestivals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!query) return;
+
+    const fetchFestivals = async () => {
+      setLoading(true);
+      setError(null);
+      setFestivals([]);
+
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/search', {
+          query: query,
+        });
+
+        const data = response.data;
+
+        // 현재 날짜
+        const currentDate = new Date();
+
+        // 받은 축제 데이터에 id와 status 추가
+        const enrichedFestivals = data.map((festival, index) => {
+          const startDate = new Date(festival.start_date);
+          const endDate = new Date(festival.end_date);
+
+          let status = '';
+          if (currentDate >= startDate && currentDate <= endDate) {
+            status = '진행 중';
+          } else if (currentDate < startDate) {
+            const dDay = Math.ceil(
+              (startDate - currentDate) / (1000 * 60 * 60 * 24)
+            );
+            status = `D-${dDay}`;
+          } else {
+            status = '종료됨';
+          }
+
+          return { ...festival, id: index, status };
+        });
+
+        setFestivals(enrichedFestivals);
+      } catch (err) {
+        console.error(err);
+        setError(err.response?.data?.message || '검색 중 오류가 발생했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFestivals();
+  }, [query]);
 
   return (
     <div className="search-page">
       <h1>검색 결과</h1>
       {query ? (
-        <p>"{query}"에 대한 검색 결과를 여기에 표시합니다.</p>
+        <p>"{query}"에 대한 검색 결과를 아래에서 확인하세요.</p>
       ) : (
         <p>검색어를 입력해 주세요.</p>
       )}
-      {/* 실제 검색 결과를 여기에 추가할 수 있습니다. */}
+
+      {loading && <p className="loading-message">검색 중...</p>}
+      {error && <p className="error-message">{error}</p>}
+
+      <div className="festivals-container">
+        {festivals && festivals.length > 0
+          ? festivals.map((festival) => (
+              <FestivalCard
+                key={festival.id}
+                festival={festival}
+                navigate={navigate}
+              />
+            ))
+          : !loading && query && <p>검색 결과가 없습니다.</p>}
+      </div>
     </div>
   );
 }
