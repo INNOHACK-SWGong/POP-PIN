@@ -62,7 +62,7 @@ def process_festival_data():
             model="gpt-3.5-turbo",  # 사용하려는 모델
             messages=[
                 {"role": "system", "content": "대한민국의 축제 데이터에 대한 분석을 진행합니다. (어떤 축제인가?, 무엇을 하나? 등등)"},
-                {"role": "user", "content": f"{festival["start_date"]}부터 {festival["end_date"]}까지 {festival["location"]}에서 진행하는 {festival["title"]}"}
+                {"role": "user", "content": f"{festival['start_date']}부터 {festival['end_date']}까지 {festival['location']}에서 진행하는 {festival['title']}"}
             ]
         )
 
