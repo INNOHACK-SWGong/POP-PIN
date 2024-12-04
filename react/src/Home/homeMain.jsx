@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeMain.css';
+import Slider from './Slider';
 import LocationCard from './LocationCard';
 
 function HomeMain() {
@@ -14,33 +15,44 @@ function HomeMain() {
         const { latitude, longitude } = position.coords;
 
         try {
-          // festival/Haeundae 경로에서 데이터 가져오기
           const response = await fetch('/festival/Haeundae.json');
           const data = await response.json();
 
           const currentDate = new Date();
-
-          // 축제 필터링 및 정렬
           const validLocations = data
             .filter((location) => {
               const endDate = new Date(location['축제종료일자']);
-              return endDate > currentDate; // 오늘 이후에 종료되는 축제만 필터링
+              return endDate >= currentDate; // 현재 시점 이후 종료되는 축제만 포함
             })
             .map((location, index) => {
+              const startDate = new Date(location['축제시작일자']);
+              const endDate = new Date(location['축제종료일자']);
               const distance = getDistanceFromLatLonInKm(
                 latitude,
                 longitude,
                 parseFloat(location['위도']),
                 parseFloat(location['경도'])
               );
-              return { ...location, distance, id: index };
+
+              // 상태 추가 (진행 중 / D-Day 계산)
+              let status = '';
+              if (currentDate >= startDate && currentDate <= endDate) {
+                status = '진행 중';
+              } else {
+                const dDay = Math.ceil(
+                  (startDate - currentDate) / (1000 * 60 * 60 * 24)
+                );
+                status = `D-${dDay}`;
+              }
+
+              return { ...location, distance, id: index, status };
             })
             .sort(
               (a, b) =>
                 new Date(a['축제종료일자']) - new Date(b['축제종료일자'])
-            ); // 종료일 기준 정렬
+            );
 
-          setLocations(validLocations.slice(0, 10)); // 상위 10개 축제만 표시
+          setLocations(validLocations);
         } catch (err) {
           console.error(err);
           setError('Failed to fetch location data.');
@@ -53,7 +65,7 @@ function HomeMain() {
   }, []);
 
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371; // 지구 반지름 (km)
+    const R = 6371;
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
     const a =
@@ -76,8 +88,7 @@ function HomeMain() {
 
   return (
     <div>
-      <h1>요 길 어때요?</h1>
-      {error && <p className="error">{error}</p>}
+      <Slider data={locations} onCardClick={handleCardClick} />
       <div className="card-container">
         {locations.map((location) => (
           <LocationCard

@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 사용
 import './Header.css';
 
 function Header() {
+  const navigate = useNavigate(); // 네비게이션 함수
+
+  const handleLogoClick = () => {
+    navigate('/'); // '/' 경로로 이동
+  };
+
   return (
     <header className="header">
-      <div className="header-logo">
+      <div className="header-logo" onClick={handleLogoClick}>
         <img src="/PopPinLogoWhite.png" alt="PopPinLogo" />
       </div>
       <div className="header-actions">
