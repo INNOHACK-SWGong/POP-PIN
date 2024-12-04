@@ -19,7 +19,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def get_festivals():
     try:
         # festivals.json 파일에서 축제 데이터 읽기
-        with open("festivals.json", "r", encoding="utf-8") as f:
+        with open("popups.json", "r", encoding="utf-8") as f:
             festivals = json.load(f)
         
         # 축제 데이터를 JSON 형식으로 반환
@@ -32,7 +32,7 @@ def get_festivals():
 @app.route('/festivals/<int:festival_id>', methods=['GET'])
 def get_festival_by_id(festival_id):
     try:
-        with open("festivals.json", "r", encoding="utf-8") as f:
+        with open("popups.json", "r", encoding="utf-8") as f:
             festivals = json.load(f)
         
         # festivals.json에서 해당 id의 축제 찾기
