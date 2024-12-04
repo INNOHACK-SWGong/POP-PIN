@@ -1,4 +1,3 @@
-// src/pages/detail/DetailPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './DetailPage.css';
@@ -10,39 +9,7 @@ function DetailPage() {
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
 
-  // /openai 엔드포인트에 데이터 전송
-  useEffect(() => {
-    if (!festival) return; // festival이 null일 경우 실행하지 않음
-
-    const fetchFestivalData = async () => {
-      setStatusMessage('데이터를 불러오는 중...');
-      try {
-        const response = await fetch(`http://127.0.0.1:5000/openai`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            festival: festival,
-          }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log('OpenAI Response:', data);
-          setStatusMessage(data);
-        } else {
-          setStatusMessage('서버 오류가 발생했습니다. 다시 시도해 주세요.');
-          console.error('OpenAI Error Response:', await response.text());
-        }
-      } catch (error) {
-        setStatusMessage('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
-        console.error('Error fetching festival data:', error);
-      }
-    };
-
-    fetchFestivalData();
-  }, [festival]); // festival이 변경될 때마다 실행
+  const today = new Date();
 
   // /festivals/<id> 엔드포인트에서 축제 데이터 가져오기
   useEffect(() => {
@@ -72,6 +39,40 @@ function DetailPage() {
     fetchFestival();
   }, [id]);
 
+  // festival이 있을 때만 OpenAI API 호출
+  useEffect(() => {
+    if (festival) {
+      const fetchFestivalData = async () => {
+        setStatusMessage('데이터를 불러오는 중...');
+        try {
+          const response = await fetch(`http://127.0.0.1:5000/openai`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              festival: festival,
+            }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log('OpenAI Response:', data);
+            setStatusMessage(data);
+          } else {
+            setStatusMessage('서버 오류가 발생했습니다. 다시 시도해 주세요.');
+            console.error('OpenAI Error Response:', await response.text());
+          }
+        } catch (error) {
+          setStatusMessage('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
+          console.error('Error fetching festival data:', error);
+        }
+      };
+
+      fetchFestivalData();
+    }
+  }, [festival]); // festival이 변경될 때마다 실행
+
   if (loading) {
     return <p className="loading-message">로딩 중...</p>;
   }
@@ -81,8 +82,43 @@ function DetailPage() {
   }
 
   if (!festival) {
-    return null;
+    return null; // festival이 null일 경우 리턴
   }
+
+  const startDate = new Date(festival.start_date);
+  const endDate = new Date(festival.end_date);
+
+  // Generate ±5 days around today
+  const generateCalendarDates = () => {
+    const dates = [];
+    for (let i = -5; i <= 5; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() + i);
+      dates.push(date);
+    }
+    return dates;
+  };
+
+  const isFestivalActive = (date) => {
+    // Remove time from dates for accurate comparison
+    const strippedDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    const strippedStartDate = new Date(
+      startDate.getFullYear(),
+      startDate.getMonth(),
+      startDate.getDate()
+    );
+    const strippedEndDate = new Date(
+      endDate.getFullYear(),
+      endDate.getMonth(),
+      endDate.getDate()
+    );
+
+    return strippedDate >= strippedStartDate && strippedDate <= strippedEndDate;
+  };
 
   const {
     title,
@@ -123,8 +159,20 @@ function DetailPage() {
     <div className="detail-page">
       {/* 한 줄 달력 */}
       <div className="calendar-strip">
-        {/* 달력 컴포넌트 또는 구현 내용 */}
-        {/* 필요 시 축제 기간을 기준으로 달력 표시 */}
+        {generateCalendarDates().map((date, index) => {
+          const isToday = date.toDateString() === today.toDateString();
+          const active = isFestivalActive(date);
+          return (
+            <div
+              key={index}
+              className={`calendar-date ${isToday ? 'today' : ''} ${
+                active ? 'active' : ''
+              }`}
+            >
+              {isToday ? '오늘' : `${date.getMonth() + 1}/${date.getDate()}`}
+            </div>
+          );
+        })}
       </div>
 
       {/* 상세 정보 */}
