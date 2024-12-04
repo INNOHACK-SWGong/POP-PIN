@@ -135,6 +135,6 @@
 @media (max-width: 768px) {
   .calendar-container {
     position: relative;
-    width: 100%;
+    width: 90%;
   }
 }

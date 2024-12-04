@@ -1,3 +1,4 @@
+// src/components/Slider/Slider.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Slider.css';
@@ -47,13 +48,13 @@ function Slider({ data = [], onCardClick }) {
             {currentItem.status})
           </p>
           <p className="slider-address">{currentItem.location}</p>
+          <button className="details-button" onClick={handleDetailsClick}>
+            자세히 보기
+          </button>
         </div>
         <div className="slider-image">
           <img src={currentItem.image_url} alt={currentItem.title} />
         </div>
-        <button className="details-button" onClick={handleDetailsClick}>
-          자세히 보기
-        </button>
       </div>
       <button className="slider-btn prev" onClick={handlePrev}>
         &#9664;

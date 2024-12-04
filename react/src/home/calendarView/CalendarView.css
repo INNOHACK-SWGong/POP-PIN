@@ -138,7 +138,7 @@
   }
 
   .selected-events-container {
-    width: 100%; /* 전체 너비 사용 */
+    width: 90%; /* 전체 너비 사용 */
     height: auto; /* 높이 자동 조정 */
   }
 

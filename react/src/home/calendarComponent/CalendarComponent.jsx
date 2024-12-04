@@ -54,7 +54,7 @@ function CalendarComponent({
         onMouseOver={({ activeStartDate }) => handleMouseOver(activeStartDate)}
         onMouseLeave={() => setHoveredDate(null)}
         locale="ko-KR" // 한국어 로케일 설정
-        minDate={getTodayDate()} // 오늘 날짜 이전으로 선택 불가
+        // minDate={getTodayDate()}
         tileClassName={({ date, view }) =>
           date.toDateString() === hoveredDate?.toDateString() ? 'hovered' : ''
         }
