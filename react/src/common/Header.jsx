@@ -21,8 +21,8 @@ function Header() {
     }
   };
 
-  const handleMapClick = () => {
-    navigate('/map');
+  const handleMoreClick = () => {
+    navigate('/more');
   };
 
   const handleCalendarClick = () => {
@@ -46,12 +46,13 @@ function Header() {
         </button>
       </form>
       <div className="header-actions">
-        <button className="header-btn" onClick={handleMapClick}>
-          맵
+        <button className="header-btn" onClick={handleMoreClick}>
+          모두 보기
         </button>
+        {/*
         <button className="header-btn" onClick={handleCalendarClick}>
           캘린더
-        </button>
+        </button> */}
       </div>
     </header>
   );
