@@ -1,3 +1,4 @@
+// src/pages/Home/HomeMain.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeMain.css';
@@ -23,7 +24,7 @@ function HomeMain() {
         }
         const data = await response.json();
 
-        const enrichedLocations = data.map((location, index) => {
+        const enrichedLocations = data.map((location) => {
           const startDate = new Date(location.start_date);
           const endDate = new Date(location.end_date);
           const currentDate = new Date();
@@ -41,7 +42,7 @@ function HomeMain() {
             status = '종료됨';
           }
 
-          return { ...location, id: index, status };
+          return { ...location, status }; // id: index 제거
         });
 
         setLocations(enrichedLocations);
@@ -72,7 +73,7 @@ function HomeMain() {
   }, []);
 
   const handleCardClick = (location) => {
-    navigate(`/detail/${location.id}`, { state: location });
+    navigate(`/detail/${location.id}`); // state 제거
   };
 
   // 하버사인 공식 함수

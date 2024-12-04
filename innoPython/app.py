@@ -29,6 +29,24 @@ def get_festivals():
         # 에러 발생 시 메시지 반환
         return jsonify({"message": "축제 데이터를 가져오는 중 오류가 발생했습니다.", "error": str(e)}), 500
 
+@app.route('/festivals/<int:festival_id>', methods=['GET'])
+def get_festival_by_id(festival_id):
+    try:
+        with open("festivals.json", "r", encoding="utf-8") as f:
+            festivals = json.load(f)
+        
+        # festivals.json에서 해당 id의 축제 찾기
+        festival = next((fest for fest in festivals if fest['id'] == festival_id), None)
+        
+        if festival:
+            return jsonify(festival), 200
+        else:
+            return jsonify({"message": "축제를 찾을 수 없습니다."}), 404
+
+    except Exception as e:
+        logging.error("Exception occurred:", exc_info=True)
+        return jsonify({"message": "축제 데이터를 가져오는 중 오류가 발생했습니다.", "error": str(e)}), 500
+
 @app.route('/openai', methods=['POST'])
 def process_festival_data():
     try:
@@ -69,14 +87,15 @@ def search_festivals():
             festivals = json.load(f)
 
         # OpenAI를 활용하여 검색어와 관련된 축제 필터링
-        festivals_str = "\n".join([f"{fest['title']} ({fest['date']}): {fest['location']}" for fest in festivals])
+        festivals_str = "\n".join([f"{fest['title']} ({fest['date']}): {fest['location']}, id: {fest['id']}, image_url: {fest['image_url']}" for fest in festivals])
 
+        print(festivals_str)
         prompt = f"""
         다음은 대한민국의 다양한 축제 목록입니다:
 
         {festivals_str}
 
-        사용자로부터 받은 검색어는 '{query}'입니다. 이 검색어와 관련성이 높은 순서대로 축제들을 3~5개 정도 아래 JSON 형식으로 반환해주세요. 관련이 없다면 선택하지 않아도 됩니다. 하지만 적어도 1개는 주도록 노력하세요. 각 축제는 다음과 같은 필드를 가져야 합니다: title, date, start_date, end_date, location, geocode_location, latitude, longitude, image_url. 축제가 없으면 빈 배열([])을 반환해주세요. 검색어와 관련된 다양한 축제들을 포함하도록 노력해주세요.
+        사용자로부터 받은 검색어는 '{query}'입니다. 이 검색어와 관련성이 높은 순서대로 축제들을 3~5개 정도 아래 JSON 형식으로 반환해주세요. 각 축제는 다음과 같은 필드를 가져야 합니다: title, date, start_date, end_date, location, geocode_location, latitude, longitude, image_url, id. 축제가 없으면 빈 배열([])을 반환해주세요. 관련이 없다면 선택하지 않아도 됩니다. 하지만 적어도 1개는 주도록 노력하세요.
         """
 
         response = openai.ChatCompletion.create(
