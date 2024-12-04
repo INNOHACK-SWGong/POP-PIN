@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './DetailPage.css';
 
@@ -10,35 +10,33 @@ function DetailPage() {
   const startDate = new Date(festival.start_date);
   const endDate = new Date(festival.end_date);
 
-  const [answer, setAnswer] = useState(''); // 대답을 저장할 상태
-  const [loading, setLoading] = useState(false); // 로딩 상태
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const fetchAnswer = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch('http://127.0.0.1:5000/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          question: `${festival.title}에 대해 알려줘`,
-        }),
-      });
+  useEffect(() => {
+    // 서버로 데이터를 전송하는 예시
+    const fetchFestivalData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/openai', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ festival }),
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch answer');
+        if (response.ok) {
+          const data = await response.json();
+          setStatusMessage(data.message); // 서버로부터 받은 메시지를 표시
+        } else {
+          setStatusMessage('서버 오류가 발생했습니다.');
+        }
+      } catch (error) {
+        setStatusMessage('네트워크 오류가 발생했습니다.');
       }
+    };
 
-      const data = await response.json();
-      setAnswer(data.answer); // Flask에서 반환된 답변 저장
-    } catch (error) {
-      console.error('Error fetching answer:', error);
-      setAnswer('답변을 가져오는 데 실패했습니다.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchFestivalData();
+  }, [festival]);
 
   // Generate ±5 days around today
   const generateCalendarDates = () => {
@@ -137,16 +135,7 @@ function DetailPage() {
           <p>
             <strong>위치:</strong> {festival.location || '정보 없음'}
           </p>
-          <div className="map-section">
-            <button className="map-button" onClick={fetchAnswer}>
-              {loading ? '로딩 중...' : `${festival.title}에 대해 알려줘`}
-            </button>
-          </div>
-          <div className="answer-section">
-            <p>
-              <strong>대답:</strong> {answer || '아직 질문하지 않았습니다.'}
-            </p>
-          </div>
+          <p>{statusMessage}</p>
           <div className="map-section">
             <p>
               <strong>길 찾기</strong>
