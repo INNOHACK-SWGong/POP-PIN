@@ -19,7 +19,7 @@ function Search() {
 
   useEffect(() => {
     // Fetch festival data
-    const fetchFestivals = async () => {
+    const fetchLocations = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:5000/festivals`);
         if (!response.ok) {
@@ -55,7 +55,7 @@ function Search() {
       }
     };
 
-    fetchFestivals();
+    fetchLocations();
   }, []);
 
   useEffect(() => {
@@ -110,13 +110,15 @@ function Search() {
   }, [query]);
 
   useEffect(() => {
-    const filterLocations = locations.filter((filterLocation) =>
-      filterLocation.title.includes(query)
-    );
-    setFilteredLocations(filterLocations);
-    console.log('filterLocations:', filterLocations);
-    console.log('filteredLocations:', filteredLocations);
-  }, [query]);
+    if (query) {
+      const filterLocations = locations.filter((filterLocation) =>
+        filterLocation.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredLocations(filterLocations);
+    } else {
+      setFilteredLocations(locations); // query가 없을 경우 전체 데이터 표시
+    }
+  }, [query, locations]);
 
   return (
     <div className="search-page">
@@ -132,7 +134,7 @@ function Search() {
           ))}
       </div>
       {query ? (
-        <p>"{query}"에 대한 검색 결과를 아래에서 확인하세요.</p>
+        <p>"{query}"과 관련된 검색 결과를 아래에서 확인하세요.</p>
       ) : (
         <p>검색어를 입력해 주세요.</p>
       )}
