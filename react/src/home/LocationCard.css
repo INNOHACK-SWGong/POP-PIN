@@ -52,3 +52,16 @@
   -webkit-line-clamp: 2; /* 줄 수 제한 */
   -webkit-box-orient: vertical;
 }
+
+.card-status {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.card-status.ended {
+  color: red;
+}
+
+.card-status.active {
+  color: green;
+}

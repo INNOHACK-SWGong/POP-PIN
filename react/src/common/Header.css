@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f17f42; /* 헤더 배경색 */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo img {
+  height: 40px; /* 로고 높이 조정 */
+  max-width: 100%; /* 로고가 화면을 넘치지 않도록 제한 */
+  object-fit: contain; /* 이미지 비율 유지 */
+  cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.header-btn {
+  background-color: #ce6d39; /* 포인트색보다 조금 진한 색 */
+  border: none;
+  color: #ffeee4; /* 텍스트를 배경색과 대비되게 연한 하양 */
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.header-btn:hover {
+  background-color: #ffeee4; /* 버튼 호버 시 연한 하양으로 변경 */
+  color: #f17f42; /* 텍스트는 포인트색 */
+  transform: translateY(-2px); /* 약간 위로 올라가는 효과 */
+}
+
+.header-btn:active {
+  background-color: #ce6d39; /* 클릭 시 다시 진한 색으로 */
+  color: #ffeee4; /* 텍스트는 연한 하양으로 복귀 */
+  transform: translateY(0);
+}

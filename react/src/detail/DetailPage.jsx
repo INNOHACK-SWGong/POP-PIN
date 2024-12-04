@@ -28,9 +28,13 @@ function DetailPage() {
         );
 
         if (distance <= 0.5) {
-          setStatusMessage('체크 완료!');
+          setStatusMessage('체크 완료! 이 축제를 방문하셨습니다!');
         } else {
-          setStatusMessage('체크가 불가능합니다.');
+          setStatusMessage(
+            `현재 위치와 축제 장소까지 ${distance.toFixed(
+              2
+            )} km입니다. 체크인 실패.`
+          );
         }
       },
       () => {
@@ -64,22 +68,33 @@ function DetailPage() {
 
   return (
     <div className="detail-container">
-      <h1>{data['관광지명']}</h1>
+      <h1>{data['축제명']}</h1>
+      <p>
+        <strong>개최 장소:</strong> {data['개최장소']}
+      </p>
+      <p>
+        <strong>축제 기간:</strong> {data['축제시작일자']} ~{' '}
+        {data['축제종료일자']}
+      </p>
+      <p>
+        <strong>축제 내용:</strong> {data['축제내용']}
+      </p>
       <p>
         <strong>주소:</strong>{' '}
         {data['소재지도로명주소'] || data['소재지지번주소']}
       </p>
       <p>
-        <strong>소개:</strong> {data['관광지소개']}
+        <strong>위도:</strong> {data['위도']}, <strong>경도:</strong>{' '}
+        {data['경도']}
       </p>
       <p>
-        <strong>거리 계산에 사용될 위도:</strong> {data['위도']}
+        <strong>주관:</strong> {data['주관기관명']}
       </p>
       <p>
-        <strong>거리 계산에 사용될 경도:</strong> {data['경도']}
+        <strong>문의:</strong> {data['전화번호'] || '정보 없음'}
       </p>
       <button className="check-in-button" onClick={handleCheckIn}>
-        이 곳에 방문했어요!
+        이 축제에 방문했어요!
       </button>
       {statusMessage && <p className="status-message">{statusMessage}</p>}
     </div>

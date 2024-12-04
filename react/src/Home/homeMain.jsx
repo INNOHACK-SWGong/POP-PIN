@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 사용
+import { useNavigate } from 'react-router-dom';
 import './HomeMain.css';
 import LocationCard from './LocationCard';
 
 function HomeMain() {
   const [locations, setLocations] = useState([]);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // 네비게이션 함수
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -14,10 +14,18 @@ function HomeMain() {
         const { latitude, longitude } = position.coords;
 
         try {
-          const response = await fetch('/land_data.json');
+          // festival/Haeundae 경로에서 데이터 가져오기
+          const response = await fetch('/festival/Haeundae.json');
           const data = await response.json();
 
-          const nearbyLocations = data.records
+          const currentDate = new Date();
+
+          // 축제 필터링 및 정렬
+          const validLocations = data
+            .filter((location) => {
+              const endDate = new Date(location['축제종료일자']);
+              return endDate > currentDate; // 오늘 이후에 종료되는 축제만 필터링
+            })
             .map((location, index) => {
               const distance = getDistanceFromLatLonInKm(
                 latitude,
@@ -25,13 +33,16 @@ function HomeMain() {
                 parseFloat(location['위도']),
                 parseFloat(location['경도'])
               );
-              return { ...location, distance, id: index }; // 고유 ID 추가
+              return { ...location, distance, id: index };
             })
-            .filter((location) => location.distance <= 20)
-            .sort((a, b) => a.distance - b.distance);
+            .sort(
+              (a, b) =>
+                new Date(a['축제종료일자']) - new Date(b['축제종료일자'])
+            ); // 종료일 기준 정렬
 
-          setLocations(nearbyLocations.slice(0, 10));
+          setLocations(validLocations.slice(0, 10)); // 상위 10개 축제만 표시
         } catch (err) {
+          console.error(err);
           setError('Failed to fetch location data.');
         }
       },
@@ -42,7 +53,7 @@ function HomeMain() {
   }, []);
 
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371;
+    const R = 6371; // 지구 반지름 (km)
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
     const a =
@@ -60,7 +71,7 @@ function HomeMain() {
   }
 
   const handleCardClick = (location) => {
-    navigate(`/detail/${location.id}`, { state: location }); // 상세 정보 전달
+    navigate(`/detail/${location.id}`, { state: location });
   };
 
   return (
