@@ -3,42 +3,80 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background-size: cover; /* 배경 이미지 크기 조정 */
-  background-position: center; /* 배경 이미지 중앙 정렬 */
   height: 400px;
   padding: 0;
+  overflow: hidden;
 }
 
-.slider::before {
-  content: '';
+.slider-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 반투명 어두운 배경 */
-  z-index: 1; /* 텍스트와 버튼 뒤로 */
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px) brightness(0.6); /* 블러와 어둡게 효과 */
+  z-index: 1;
+}
+
+.slider-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* 이미지와 텍스트 위쪽 정렬 */
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  gap: 20px; /* 텍스트와 이미지 사이 간격 */
 }
 
 .slider-item {
+  flex: 1; /* 텍스트 영역 너비 자동 확장 */
   color: #ffffff;
   text-align: left;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 2; /* 텍스트와 버튼을 오버레이 위로 */
 }
 
 .slider-title {
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* 제목 아래 간격 추가 */
 }
 
 .slider-dates,
 .slider-address {
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* 텍스트 간격 조정 */
+}
+
+.details-button {
+  background-color: #f17f42;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px; /* 버튼 위쪽에 간격 추가 */
+}
+
+.details-button:hover {
+  background-color: #ce6d39;
+}
+
+.slider-image {
+  flex-shrink: 0;
+  max-width: 220px; /* 이미지 최대 너비 */
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.slider-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .slider-btn {
@@ -51,7 +89,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2; /* 버튼을 오버레이 위로 */
+  z-index: 4;
   transition: background-color 0.3s ease;
 }
 
