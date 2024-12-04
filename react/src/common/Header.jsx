@@ -1,12 +1,32 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 사용
+// src/components/Header/Header.jsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 
 function Header() {
-  const navigate = useNavigate(); // 네비게이션 함수
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleLogoClick = () => {
-    navigate('/'); // '/' 경로로 이동
+    navigate('/');
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+    }
+  };
+
+  const handleMapClick = () => {
+    navigate('/map');
+  };
+
+  const handleCalendarClick = () => {
+    navigate('/calendar');
   };
 
   return (
@@ -14,10 +34,24 @@ function Header() {
       <div className="header-logo" onClick={handleLogoClick}>
         <img src="/PopPinLogoWhite.png" alt="PopPinLogo" />
       </div>
+      <form className="header-search" onSubmit={handleSearchSubmit}>
+        <input
+          type="text"
+          placeholder="검색"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button type="submit" className="search-icon">
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </form>
       <div className="header-actions">
-        <button className="header-btn">검색</button>
-        <button className="header-btn">맵</button>
-        <button className="header-btn">캘린더</button>
+        <button className="header-btn" onClick={handleMapClick}>
+          맵
+        </button>
+        <button className="header-btn" onClick={handleCalendarClick}>
+          캘린더
+        </button>
       </div>
     </header>
   );

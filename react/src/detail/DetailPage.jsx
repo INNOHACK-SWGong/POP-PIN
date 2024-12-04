@@ -13,6 +13,8 @@ function DetailPage() {
   const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
   const [statusMessage, setStatusMessage] = useState(''); // 로딩 상태
+  // console.log('festival.location:', festival.original_location);
+  // console.log('festival:', festival);
 
   useEffect(() => {
     // 서버로 데이터를 전송하는 예시
@@ -143,7 +145,6 @@ function DetailPage() {
           <p>
             <strong>위치:</strong> {festival.location || '정보 없음'}
           </p>
-          <p>{statusMessage}</p>
           <div className="map-section">
             <p>
               <strong>길 찾기</strong>
@@ -155,12 +156,22 @@ function DetailPage() {
         </div>
       </div>
 
+      {/* 설명 */}
+      <div className="status-message">
+        <div className="status-ai-logo">
+          <img src="/openai_logo_white.png"></img>
+        </div>
+        <p>{statusMessage}</p>
+      </div>
+
       {/* 검색 버튼 */}
       <div className="search-buttons">
         <button className="search-button-google" onClick={openGoogleSearch}>
+          <img src="/google_logo.png" alt="logo" />
           Google에서 검색
         </button>
         <button className="search-button-naver" onClick={openNaverSearch}>
+          <img src="/naver_logo.png" alt="logo" />
           Naver에서 검색
         </button>
       </div>

@@ -1,0 +1,177 @@
+/* src/components/CalendarView/CalendarView.css */
+
+/* 기존 스타일 */
+.calendar-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.selected-events-container {
+  width: 45%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 510px; /* 높이 고정 */
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  overflow-x: hidden; /* 가로 스크롤 숨김 */
+  scrollbar-width: thin; /* 스크롤바 두께 조절 (Firefox 전용) */
+  scrollbar-color: #f17f42 #ffeee4; /* 스크롤바 색상 (Firefox 전용) */
+  position: relative; /* 포지셔닝을 위해 추가 */
+}
+
+.selected-events-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selected-events-container::-webkit-scrollbar-track {
+  background: #ffeee4;
+  border-radius: 10px;
+}
+
+.selected-events-container::-webkit-scrollbar-thumb {
+  background-color: #f17f42;
+  border-radius: 10px;
+  border: 2px solid #ffeee4;
+}
+
+.selected-events-container h4 {
+  font-size: 18px;
+  color: #f17f42;
+  margin-bottom: 10px;
+}
+
+.selected-events-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-events-container li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ffeee4;
+  border-radius: 8px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-image {
+  width: 80px; /* 이미지 너비 */
+  height: 80px; /* 이미지 높이 */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 10px; /* 내용과 이미지 사이 간격 */
+}
+
+.event-details {
+  flex: 1; /* 내용의 너비를 이미지와 함께 조정 */
+}
+
+.event-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.event-dates,
+.event-location {
+  font-size: 14px;
+  color: #555;
+}
+
+.hover-popup {
+  position: absolute;
+  top: 10px; /* 위치 조정 필요 시 변경 */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #f17f42; /* 테두리 포인트 색상 */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: #000;
+  width: 250px; /* 팝업 너비 */
+  text-align: left; /* 텍스트 정렬 */
+}
+
+.hover-popup h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f17f42; /* 포인트 색상 */
+}
+
+.hover-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hover-popup li {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+/* 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+  .calendar-view {
+    flex-direction: column;
+    align-items: stretch; /* 아이템을 전체 너비로 확장 */
+    gap: 10px; /* 간격 조정 */
+  }
+
+  .selected-events-container {
+    width: 90%; /* 전체 너비 사용 */
+    height: auto; /* 높이 자동 조정 */
+  }
+
+  .hover-popup {
+    width: 90%; /* 모바일 화면에 맞게 팝업 너비 조정 */
+    left: 5%; /* 중앙 정렬 */
+    transform: translateX(0); /* 중앙 정렬 조정 */
+    top: auto; /* 위치 재조정 */
+    bottom: 100%; /* 달력 위에 팝업 표시 */
+    margin-bottom: 10px; /* 팝업과 달력 간 간격 */
+  }
+
+  .hover-popup h4 {
+    font-size: 16px;
+  }
+
+  .hover-popup ul li {
+    font-size: 12px;
+  }
+
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 80px; /* 원하는 고정 높이 설정 */
+    object-fit: cover; /* 이미지가 컨테이너를 채우도록 설정 */
+    border-radius: 5px;
+    margin-left: 0;
+    margin-top: 10px;
+    overflow: hidden; /* 넘치는 부분 숨김 */
+  }
+}

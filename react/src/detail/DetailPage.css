@@ -95,6 +95,11 @@
   margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.search-button-google img,
+.search-button-naver img {
+  height: 20px; /* 이미지 높이 */
+  margin-right: 10px; /* 이미지와 텍스트 간격 */
+}
 
 .search-button-google {
   background-color: white;
@@ -142,4 +147,34 @@
 .calendar-date.active {
   background-color: #f17f42;
   color: #fff;
+}
+
+.status-ai-logo img {
+  height: 20px;
+}
+.status-message {
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #212121;
+  border-radius: 8px;
+  text-align: start;
+  white-space: pre-wrap; /* 줄 바꿈 가능 */
+}
+
+.status-message p {
+  font-size: 16px;
+  color: white;
+}
+
+.status-message p.loading {
+  color: #ff9800;
+}
+
+.status-message p.success {
+  color: #4caf50;
+}
+
+.status-message p.error {
+  color: #f44336;
 }

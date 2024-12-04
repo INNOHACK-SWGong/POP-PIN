@@ -1,0 +1,20 @@
+/* src/pages/Search/Search.css */
+
+.search-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-page h1 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-page p {
+  font-size: 1.2rem;
+  color: #666666;
+  text-align: center;
+}

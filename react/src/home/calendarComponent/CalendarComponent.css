@@ -1,0 +1,140 @@
+/* src/components/CalendarComponent/CalendarComponent.css */
+.calendar-container {
+  position: relative;
+  width: 45%;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  color: #000;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar__tile {
+  position: relative;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  height: 70px;
+  border: 1px solid #ffeee4;
+  cursor: pointer;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: #f17f42;
+  color: #fff;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f17f42; /* 네비게이션 배경색 */
+  border-radius: 8px;
+  color: #fff; /* 텍스트 색상 */
+}
+
+.react-calendar__navigation__label {
+  font-size: 18px; /* 현재 월/년도 표시 크기 */
+  font-weight: bold;
+  padding: 0 15px;
+}
+
+.react-calendar__navigation button {
+  background-color: transparent; /* 투명 배경 */
+  color: #fff; /* 버튼 텍스트 색상 */
+  border: none;
+  font-size: 20px; /* 버튼 크기 */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  color: #ffeee4; /* 버튼 호버 색상 */
+}
+
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* 동그란 버튼 */
+  background-color: #ce6d39; /* 이전/다음 버튼 배경색 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 */
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__navigation__prev-button:hover,
+.react-calendar__navigation__next-button:hover {
+  background-color: #f17f42; /* 호버 시 밝은 색 */
+}
+
+.react-calendar__navigation__prev-button::before,
+.react-calendar__navigation__next-button::before {
+  content: '';
+  display: inline-block;
+  border: solid #fff; /* 화살표 색 */
+  border-width: 0 3px 3px 0;
+  padding: 5px;
+}
+
+.react-calendar__navigation__prev-button::before {
+  transform: rotate(135deg); /* 왼쪽 화살표 */
+}
+
+.react-calendar__navigation__next-button::before {
+  transform: rotate(-45deg); /* 오른쪽 화살표 */
+}
+
+.react-calendar__tile--now {
+  background: #fcead6; /* 오늘 날짜 강조 */
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #f17f42;
+}
+
+.react-calendar__tile--active {
+  background: #f17f42; /* 선택된 날짜 강조 */
+  color: #fff;
+}
+
+/* 일요일 스타일 */
+.react-calendar__month-view__weekdays__weekday:nth-child(7),
+.react-calendar__tile:nth-child(7n) {
+  color: rgb(255, 60, 60);
+}
+
+/* 토요일 스타일 */
+.react-calendar__month-view__weekdays__weekday:nth-child(6),
+.react-calendar__tile:nth-child(7n + 6) {
+  color: rgb(95, 95, 255);
+}
+
+/* 현재 월 외의 날짜 불투명도 적용 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.3; /* 불투명도 설정 */
+}
+
+/* 호버 시 효과 유지 */
+.react-calendar__month-view__days__day--neighboringMonth:hover {
+  opacity: 0.3; /* 호버 시 불투명도 유지 */
+}
+
+.hovered {
+  background-color: #e0e0e0 !important;
+}
+
+/* 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+  .calendar-container {
+    position: relative;
+    width: 90%;
+  }
+}

@@ -1,0 +1,16 @@
+/* src/components/CalendarComponent/EventIndicator.css */
+.event-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  /* background-color: #f17f42; */
+  /* color: #fff; */
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 50%; /* 동그 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
