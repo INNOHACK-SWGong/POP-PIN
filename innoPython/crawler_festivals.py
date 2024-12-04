@@ -115,7 +115,7 @@ def crawl_festivals():
             print(f"페이지 {start_page}에 데이터 없음. 크롤링 종료.")
             break
         
-        id = 1
+        id = len(popups.json)
         
         for festival in festival_list:
             title = festival.find('p', class_='tit').text.strip()

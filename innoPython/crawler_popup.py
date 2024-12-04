@@ -15,33 +15,31 @@ def scrape_popup_info():
         # 페이지가 완전히 로드될 때까지 대기
         page.wait_for_selector('.popup-name')  # 팝업 이름이 로드될 때까지 대기
 
+        details = []
         popups = []
 
-        # 팝업 정보 크롤링
         popup_details = page.query_selector_all('a.popup-img-wrap') # 모든 팝업의 상세 페이지 주소
-        popup_img_elements = page.query_selector_all('.popup-img-wrap')
-        print("============", len(popup_details))
-        
-        for i in range(len(popup_names)):
+        for i in range(len(popup_details)):
             detail_url = popup_details[i].get_attribute('href')  # href 속성 추출
 
-        popup_names = page.query_selector_all('h1.tit')  # 팝업 이름 추출
-        popup_locations = page.query_selector_all('.location')  # 팝업 위치 추출
-        popup_dates = page.query_selector_all('.date')  # 팝업 날짜 추출
-        # 12월 포함 팝업만 필터링
-        for i in range(len(popup_names)):
-            name = popup_names[i].inner_text().strip()  # 팝업 이름
-            location = popup_locations[i].inner_text().strip()  # 팝업 위치
-            date = popup_dates[i].inner_text().strip()  # 팝업 날짜
-            img_tag = popup_img_elements[i].query_selector('img')  # 해당 요소 내의 img 태그를 찾음
-            if img_tag:
-                image_url = img_tag.get_attribute('src')  # 이미지 URL 추출
-            else:
-                print("이미지 태그를 찾을 수 없습니다.")
-            
+            details.append(detail_url)
+        
+        id = 1
+        for i in range(len(details)):
+            # 페이지 열기
+            page.goto(f"https://www.popply.co.kr{details[i]}")
+
+            # 페이지가 완전히 로드될 때까지 대기
+            page.wait_for_selector('.tit')  # 팝업 이름이 로드될 때까지 대기
+
+            # 팝업 정보 크롤링
+            popup_names = page.query_selector('.tit').inner_text()  # 팝업 이름 추출
+            popup_locations = page.query_selector('.location').inner_text()  # 팝업 위치 추출
+            popup_dates = page.query_selector('.date').inner_text()  # 팝업 날짜 추출
+            image_url = page.query_selector('.slide-img-wrap img').get_attribute('src')
             
             # 날짜 형식: 24.11.01 - 25.01.01, 24.12.01 - 24.12.31와 같은 날짜 범위
-            match = re.match(r'(\d{2})\.(\d{2})\.(\d{2})\s*-\s*(\d{2})\.(\d{2})\.(\d{2})', date)
+            match = re.match(r'(\d{2})\.(\d{2})\.(\d{2})\s*-\s*(\d{2})\.(\d{2})\.(\d{2})', popup_dates)
             if match:
                 # 시작일과 종료일을 각각 날짜 객체로 변환
                 start_date = f"20{match.group(1)}-{match.group(2)}-{match.group(3)}"
@@ -53,14 +51,17 @@ def scrape_popup_info():
                 # 12월에 포함된 날짜인지 확인
                 if start_date_obj.month == 12 or end_date_obj.month == 12 or (start_date_obj.month < 12 < end_date_obj.month):
                     popups.append({
-                        "title" : name,
-                        "date": date,
+                        "id" : id,
+                        "title" : popup_names,
+                        "date": popup_dates,
                         "start_date": start_date_obj.strftime("%Y-%m-%d") if start_date_obj else None,
                         "end_date": end_date_obj.strftime("%Y-%m-%d") if end_date_obj else None,
-                        "location": location,
+                        "location": popup_locations,
                         "image_url": image_url,
-                        "detail_url": detail_url,
+                        
                     })
+                    id += 1
+                
 
         # JSON 파일 저장
         with open("popups.json", "w", encoding="utf-8") as f:
