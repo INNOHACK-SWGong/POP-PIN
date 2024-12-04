@@ -1,3 +1,5 @@
+/* src/pages/DetailPage/DetailPage.css */
+
 .detail-page {
   display: flex;
   flex-direction: column;
@@ -45,7 +47,7 @@
 }
 
 .detail-info p {
-  margin: 5px 0;
+  margin: 0 0 10px 0; /* 수정: margin의 첫 번째 값 오류 수정 */
   font-size: 16px;
 }
 
@@ -95,6 +97,7 @@
   margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .search-button-google img,
 .search-button-naver img {
   height: 20px; /* 이미지 높이 */
@@ -105,6 +108,7 @@
   background-color: white;
   color: black;
 }
+
 .search-button-naver {
   background-color: #03c75a;
   color: white;
@@ -152,6 +156,7 @@
 .status-ai-logo img {
   height: 20px;
 }
+
 .status-message {
   max-width: 1200px;
   margin-top: 20px;
@@ -177,4 +182,172 @@
 
 .status-message p.error {
   color: #f44336;
+}
+
+/* 미디어 쿼리 추가 */
+
+/* 태블릿 및 작은 화면 (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .detail-container {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .search-buttons {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-button-google,
+  .search-button-naver {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .calendar-date {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .detail-info p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .detail-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .map-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .status-message {
+    max-width: 90%;
+    padding: 12px;
+  }
+
+  .status-message p {
+    font-size: 14px;
+  }
+}
+
+/* 모바일 화면 (max-width: 768px) */
+@media (max-width: 768px) {
+  .detail-container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-buttons {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-button-google,
+  .search-button-naver {
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .calendar-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .calendar-date {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    margin: 4px;
+  }
+
+  .detail-info p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .detail-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .map-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .status-message {
+    max-width: 90%;
+    padding: 12px;
+  }
+
+  .status-message p {
+    font-size: 14px;
+  }
+}
+
+/* 소형 모바일 화면 (max-width: 480px) */
+@media (max-width: 480px) {
+  .detail-container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-buttons {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-button-google,
+  .search-button-naver {
+    width: 100%;
+    margin: 6px 0;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .calendar-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .calendar-date {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+    margin: 3px;
+  }
+
+  .detail-info p {
+    font-size: 14px;
+    margin: 4px 0;
+  }
+
+  .detail-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .map-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .status-message {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .status-message p {
+    font-size: 14px;
+  }
 }
