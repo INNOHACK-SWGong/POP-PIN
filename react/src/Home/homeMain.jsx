@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import './HomeMain.css';
 import Slider from './Slider';
 import LocationCard from './LocationCard';
+import CalendarView from './CalendarView';
 
 function HomeMain() {
   const [locations, setLocations] = useState([]);
+  const [filteredLocations, setFilteredLocations] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('부산광역시');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -53,6 +56,11 @@ function HomeMain() {
             );
 
           setLocations(validLocations);
+          setFilteredLocations(
+            validLocations.filter((loc) =>
+              loc['소재지도로명주소']?.includes(selectedRegion)
+            )
+          );
         } catch (err) {
           console.error(err);
           setError('Failed to fetch location data.');
@@ -62,7 +70,15 @@ function HomeMain() {
         setError('Failed to get your current location.');
       }
     );
-  }, []);
+  }, [selectedRegion]);
+
+  const handleRegionChange = (event) => {
+    setSelectedRegion(event.target.value);
+    const filtered = locations.filter((loc) =>
+      loc['소재지도로명주소']?.includes(event.target.value)
+    );
+    setFilteredLocations(filtered);
+  };
 
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     const R = 6371;
@@ -88,9 +104,27 @@ function HomeMain() {
 
   return (
     <div>
-      <Slider data={locations} onCardClick={handleCardClick} />
+      <Slider data={filteredLocations} onCardClick={handleCardClick} />
+      <CalendarView events={locations} />
+      <div className="region-selector">
+        <label htmlFor="region">지역 선택:</label>
+        <select
+          id="region"
+          value={selectedRegion}
+          onChange={handleRegionChange}
+        >
+          <option value="부산광역시">부산광역시</option>
+          <option value="서울특별시">서울특별시</option>
+          <option value="대구광역시">대구광역시</option>
+          <option value="인천광역시">인천광역시</option>
+          <option value="광주광역시">광주광역시</option>
+          <option value="대전광역시">대전광역시</option>
+          <option value="울산광역시">울산광역시</option>
+        </select>
+      </div>
+      <h2>{selectedRegion} 근처 축제를 확인하세요!</h2>
       <div className="card-container">
-        {locations.map((location) => (
+        {filteredLocations.map((location) => (
           <LocationCard
             key={location.id}
             location={location}
@@ -98,6 +132,7 @@ function HomeMain() {
           />
         ))}
       </div>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }
