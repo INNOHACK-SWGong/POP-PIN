@@ -13,8 +13,8 @@ function CalendarView({ events }) {
 
   const tileContent = ({ date }) => {
     const dailyEvents = events.filter((event) => {
-      const startDate = new Date(event['축제시작일자']);
-      const endDate = new Date(event['축제종료일자']);
+      const startDate = new Date(event.start_date);
+      const endDate = new Date(event.end_date);
       return date >= startDate && date <= endDate;
     });
 
@@ -37,8 +37,8 @@ function CalendarView({ events }) {
 
   const eventsOnSelectedDate = selectedDate
     ? events.filter((event) => {
-        const startDate = new Date(event['축제시작일자']);
-        const endDate = new Date(event['축제종료일자']);
+        const startDate = new Date(event.start_date);
+        const endDate = new Date(event.end_date);
         return selectedDate >= startDate && selectedDate <= endDate;
       })
     : [];
@@ -54,19 +54,19 @@ function CalendarView({ events }) {
           <div className="hover-popup">
             <h4>{hoveredDate.toDateString()}</h4>
             {events.filter((event) => {
-              const startDate = new Date(event['축제시작일자']);
-              const endDate = new Date(event['축제종료일자']);
+              const startDate = new Date(event.start_date);
+              const endDate = new Date(event.end_date);
               return hoveredDate >= startDate && hoveredDate <= endDate;
             }).length > 0 ? (
               <ul>
                 {events
                   .filter((event) => {
-                    const startDate = new Date(event['축제시작일자']);
-                    const endDate = new Date(event['축제종료일자']);
+                    const startDate = new Date(event.start_date);
+                    const endDate = new Date(event.end_date);
                     return hoveredDate >= startDate && hoveredDate <= endDate;
                   })
                   .map((event, index) => (
-                    <li key={index}>{event['축제명']}</li>
+                    <li key={index}>{event.title}</li>
                   ))}
               </ul>
             ) : (
@@ -85,7 +85,7 @@ function CalendarView({ events }) {
           <ul>
             {eventsOnSelectedDate.map((event, index) => (
               <li key={index}>
-                <strong>{event['축제명']}</strong> - {event['개최장소']}
+                <strong>{event.title}</strong> - {event.location}
               </li>
             ))}
           </ul>

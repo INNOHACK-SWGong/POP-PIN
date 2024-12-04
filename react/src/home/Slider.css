@@ -3,18 +3,30 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: #191919;
+  background-size: cover; /* 배경 이미지 크기 조정 */
+  background-position: center; /* 배경 이미지 중앙 정렬 */
   height: 400px;
   padding: 0;
 }
 
+.slider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 어두운 배경 */
+  z-index: 1; /* 텍스트와 버튼 뒤로 */
+}
+
 .slider-item {
-  margin-left: 50px;
   color: #ffffff;
   text-align: left;
   position: absolute;
   bottom: 20px;
   left: 20px;
+  z-index: 2; /* 텍스트와 버튼을 오버레이 위로 */
 }
 
 .slider-title {
@@ -34,13 +46,12 @@
   color: #f17f42;
   border: none;
   padding: 10px;
-  /* border-radius: 50%; */
   font-size: 20px;
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 2; /* 버튼을 오버레이 위로 */
   transition: background-color 0.3s ease;
 }
 

@@ -23,19 +23,22 @@ function Slider({ data = [], onCardClick }) {
   const currentItem = data[currentIndex];
 
   return (
-    <div className="slider">
+    <div
+      className="slider"
+      style={{
+        backgroundImage: `url(${currentItem.image_url})`, // 배경 이미지 추가
+      }}
+    >
       <button className="slider-btn prev" onClick={handlePrev}>
         &#9664;
       </button>
       <div className="slider-item" onClick={() => onCardClick(currentItem)}>
-        <h2 className="slider-title">{currentItem['축제명']}</h2>
+        <h2 className="slider-title">{currentItem.title}</h2>
         <p className="slider-dates">
-          {currentItem['축제시작일자']} ~ {currentItem['축제종료일자']} (
+          {currentItem.start_date} ~ {currentItem.end_date} (
           {currentItem.status})
         </p>
-        <p className="slider-address">
-          {currentItem['소재지도로명주소'] || currentItem['소재지지번주소']}{' '}
-        </p>
+        <p className="slider-address">{currentItem.location}</p>
       </div>
       <button className="slider-btn next" onClick={handleNext}>
         &#9654;
