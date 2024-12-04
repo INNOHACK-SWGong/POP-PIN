@@ -1,15 +1,10 @@
-// src/components/Slider/Slider.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Slider.css';
 
 function Slider({ data = [], onCardClick }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
-
-  if (!data || data.length === 0) {
-    return <div className="slider-empty">데이터가 없습니다.</div>;
-  }
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -23,15 +18,30 @@ function Slider({ data = [], onCardClick }) {
     );
   };
 
-  const currentItem = data[currentIndex];
-
   const handleDetailsClick = () => {
-    navigate(`/detail/${currentItem.id}`, { state: currentItem });
+    if (data[currentIndex]) {
+      navigate(`/detail/${data[currentIndex].id}`);
+    }
   };
+
+  useEffect(() => {
+    if (data.length === 0) return;
+
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [data, currentIndex]); // Dependencies: data and currentIndex
+
+  if (data.length === 0) {
+    return <div className="slider-empty">데이터가 없습니다.</div>;
+  }
+
+  const currentItem = data[currentIndex];
 
   return (
     <div className="slider">
-      {/* 배경 이미지 전용 div */}
       <div
         className="slider-background"
         style={{
@@ -39,7 +49,6 @@ function Slider({ data = [], onCardClick }) {
         }}
       ></div>
 
-      {/* 콘텐츠 */}
       <div className="slider-content">
         <div className="slider-item">
           <h2 className="slider-title">{currentItem.title}</h2>
