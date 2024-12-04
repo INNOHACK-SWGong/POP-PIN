@@ -1,5 +1,4 @@
-/* src/components/festivalCard/FestivalCard.css */
-
+/* 카드 스타일 */
 .festival-card {
   display: flex;
   flex-direction: column;
@@ -36,16 +35,42 @@
   margin: 0;
 }
 
-.festival-card-date,
-.festival-card-location,
-.festival-card-status {
-  margin: 0 0;
+.festival-card-dates {
   font-size: 1rem;
-  color: #555555;
+  color: #666666;
+}
+
+.festival-card-location {
+  font-size: 0.9rem;
+  color: #777777;
+}
+
+.festival-card-status-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .festival-card-status {
   font-weight: bold;
+  font-size: 0.98em;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #fff;
+  width: 45%;
+}
+
+.festival-card-status.start {
+  background-color: #c4bb00;
+}
+
+.festival-card-status.진행중 {
+  background-color: rgb(43, 217, 43);
+}
+
+.festival-card-status.종료됨 {
+  background-color: #9e9e9e;
 }
 
 .details-button {

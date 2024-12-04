@@ -1,25 +1,32 @@
-// src/components/festivalCard/FestivalCard.jsx
 import React from 'react';
 import './FestivalCard.css';
 
 function FestivalCard({ festival, navigate }) {
-  const {
-    title,
-    date,
-    start_date,
-    end_date,
-    location,
-    geocode_location,
-    latitude,
-    longitude,
-    image_url,
-    status,
-    id,
-  } = festival;
-  // console.log(image_url);
+  const { title, start_date, end_date, location, image_url, status, id } =
+    festival;
+
+  const today = new Date();
+  const getStatus = () => {
+    const startDate = new Date(start_date);
+    const endDate = new Date(end_date);
+
+    if (today > endDate) {
+      return { status: '종료됨', statusClass: '종료됨' };
+    } else if (today >= startDate) {
+      const differenceInDays = Math.ceil(
+        (endDate - today) / (1000 * 60 * 60 * 24)
+      );
+      return { status: '진행 중', statusClass: '진행중' };
+    } else {
+      const differenceInDays = Math.ceil(
+        (startDate - today) / (1000 * 60 * 60 * 24)
+      );
+      return { status: `시작 D-${differenceInDays}`, statusClass: 'start' };
+    }
+  };
+  const { status: festivalStatus, statusClass } = getStatus();
 
   const handleDetailsClick = () => {
-    // 상세 페이지로 이동할 때, 축제의 id를 URL 파라미터로 전달
     navigate(`/detail/${id}`);
   };
 
@@ -33,14 +40,16 @@ function FestivalCard({ festival, navigate }) {
       />
       <div className="festival-card-details">
         <h2 className="festival-card-title">{title}</h2>
-        <p className="festival-card-date">
-          <strong>날짜:</strong> {date}
+        <p className="festival-card-dates">
+          {start_date} ~ {end_date}
         </p>
+        <div className="festival-card-status-wrapper">
+          <p className={`festival-card-status ${statusClass}`}>
+            {festivalStatus}
+          </p>
+        </div>
         <p className="festival-card-location">
           <strong>위치:</strong> {location || '정보 없음'}
-        </p>
-        <p className="festival-card-status">
-          <strong>상태:</strong> {status}
         </p>
         <button className="details-button" onClick={handleDetailsClick}>
           상세 정보 보기

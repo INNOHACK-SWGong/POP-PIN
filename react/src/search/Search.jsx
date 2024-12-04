@@ -117,7 +117,6 @@ function Search() {
     <div className="search-page">
       <h1>검색 결과</h1>
       <p>"{query}" 검색 결과</p>
-
       <div className="festivals-container">
         {filteredLocations &&
           filteredLocations.map((filteredLocation) => (
@@ -134,10 +133,8 @@ function Search() {
       ) : (
         <p>검색어를 입력해 주세요.</p>
       )}
-
       {loading && <div className="loading-spinner"></div>} {/* 로딩 스피너 */}
       {error && <p className="error-message">{error}</p>}
-
       <div className="festivals-container">
         {festivals && festivals.length > 0
           ? festivals.map((festival) => (
