@@ -11,6 +11,21 @@ function DetailPage() {
 
   const today = new Date();
 
+  const getStatus = () => {
+    const startDate = new Date(festival.start_date);
+    const endDate = new Date(festival.end_date);
+
+    if (today > endDate) {
+      return { status: '종료됨', statusClass: '종료됨' };
+    } else if (today >= startDate) {
+      const dDay = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+      return { status: `진행 중`, statusClass: '진행중' };
+    } else {
+      const dDay = Math.ceil((startDate - today) / (1000 * 60 * 60 * 24));
+      return { status: `D-${dDay}`, statusClass: 'd-day' };
+    }
+  };
+
   // /festivals/<id> 엔드포인트에서 축제 데이터 가져오기
   useEffect(() => {
     const fetchFestival = async () => {
@@ -130,7 +145,6 @@ function DetailPage() {
     latitude,
     longitude,
     image_url,
-    status,
   } = festival;
 
   const openGoogleMaps = () => {
@@ -154,6 +168,8 @@ function DetailPage() {
     )}`;
     window.open(url, '_blank');
   };
+
+  const { status, statusClass } = getStatus();
 
   return (
     <div className="detail-page">
@@ -181,7 +197,9 @@ function DetailPage() {
           <img src={image_url} alt={title} loading="lazy" />
         </div>
         <div className="detail-info">
-          <h1 className="detail-title">{title}</h1>
+          <h1 className="detail-title">
+            {title} <p className={`detail-status ${statusClass}`}>{status}</p>
+          </h1>
           <p className="detail-date">
             <strong>시작일:</strong> {start_date}
           </p>
@@ -191,9 +209,9 @@ function DetailPage() {
           <p className="detail-location">
             <strong>위치:</strong> {location || '정보 없음'}
           </p>
-          <p className="detail-status">
-            <strong>상태:</strong> {status}
-          </p>
+          {/* <div className="detail-status-wrapper">
+            <p className={`detail-status ${statusClass}`}>{status}</p>
+          </div> */}
           <div className="map-section">
             <p>
               <strong>길 찾기</strong>
@@ -203,14 +221,6 @@ function DetailPage() {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* 설명 */}
-      <div className="status-message">
-        <div className="status-ai-logo">
-          <img src="/openai_logo_white.png" alt="OpenAI Logo" />
-        </div>
-        <p>{statusMessage}</p>
       </div>
 
       {/* 검색 버튼 */}
@@ -223,6 +233,13 @@ function DetailPage() {
           <img src="/naver_logo.png" alt="Naver Logo" />
           Naver에서 검색
         </button>
+      </div>
+      {/* 설명 */}
+      <div className="status-message">
+        <div className="status-ai-logo">
+          <img src="/openai_logo_white.png" alt="OpenAI Logo" />
+        </div>
+        <p>{statusMessage}</p>
       </div>
     </div>
   );

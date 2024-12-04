@@ -70,13 +70,14 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 8px;
-  color: #fff;
+  color: black;
   width: 30%;
   text-align: center;
 }
 
 .card-status.d {
-  background-color: rgb(255, 116, 116);
+  background-color: rgb(255, 183, 183);
+  color: rgb(196, 37, 37);
 }
 
 .card-status.종료됨 {
@@ -84,11 +85,13 @@
 }
 
 .card-status.진행중 {
-  background-color: rgb(43, 217, 43);
+  background-color: rgb(218, 255, 218);
+  color: rgb(25, 169, 25);
 }
 
 .card-status.start {
-  background-color: #c4bb00;
+  background-color: #fffcc6;
+  color: #807a0c;
 }
 
 .card-status.alternative {

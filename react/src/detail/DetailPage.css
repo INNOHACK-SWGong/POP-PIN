@@ -41,7 +41,7 @@
 }
 
 .detail-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -350,4 +350,36 @@
   .status-message p {
     font-size: 14px;
   }
+}
+/* 상태 스타일 */
+.detail-status-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.detail-status {
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: inline-block;
+  padding: 4px 0px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  min-width: 100px;
+}
+
+.detail-status.d-day {
+  background-color: #fffcc6;
+  color: #807a0c;
+}
+
+.detail-status.진행중 {
+  background-color: rgb(218, 255, 218);
+  color: rgb(25, 169, 25);
+}
+
+.detail-status.종료됨 {
+  background-color: #9e9e9e; /* 종료됨 색상 */
 }
