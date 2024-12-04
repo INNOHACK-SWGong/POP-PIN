@@ -83,7 +83,7 @@ def search_festivals():
             return jsonify({"message": "검색어가 제공되지 않았습니다."}), 400
 
         # festivals.json 파일에서 축제 데이터 읽기
-        with open("festivals.json", "r", encoding="utf-8") as f:
+        with open("popups.json", "r", encoding="utf-8") as f:
             festivals = json.load(f)
 
         # OpenAI를 활용하여 검색어와 관련된 축제 필터링
