@@ -121,8 +121,10 @@ function HomeMain() {
       <Slider data={locations} onCardClick={handleCardClick} />
       <CalendarView events={locations} />
 
-      {/* 내 주변 축제 */}
-      <h2>내 주변 축제에요! (5km 이내)</h2>
+      <div className="section-header">
+        <span className="section-icon">📍</span> 내 주변 축제에요!{' '}
+        <span className="section-highlight">(5km 이내)</span>
+      </div>
       <div className="scrollable-card-container">
         {filterNearbyFestivals().map((location) => (
           <LocationCard
@@ -133,8 +135,10 @@ function HomeMain() {
         ))}
       </div>
 
-      {/* 곧 종료돼요 */}
-      <h2>곧 종료돼요! (5일 이내 종료)</h2>
+      <div className="section-header">
+        <span className="section-icon">⏳</span> 곧 종료돼요!{' '}
+        <span className="section-highlight">(5일 이내 종료)</span>
+      </div>
       <div className="scrollable-card-container">
         {filterEndingSoonFestivals().map((location) => (
           <LocationCard
@@ -145,8 +149,9 @@ function HomeMain() {
         ))}
       </div>
 
-      {/* 모든 축제 */}
-      <h2>모든 축제를 확인하세요!</h2>
+      <div className="section-header">
+        <span className="section-icon">🎉</span> 모든 축제를 확인하세요!
+      </div>
       <div className="scrollable-card-container">
         {locations.map((location) => (
           <LocationCard

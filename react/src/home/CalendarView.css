@@ -19,7 +19,7 @@
   border-radius: 8px;
   background-color: #fff;
   transition: all 0.3s ease;
-  height: 50px;
+  height: 70px;
   border: 1px solid #ffeee4;
   cursor: pointer;
 }
@@ -168,7 +168,7 @@
   width: 50%;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 400px; /* 높이 고정 */
+  height: 510px; /* 높이 고정 */
   overflow-y: auto; /* 세로 스크롤 추가 */
   overflow-x: hidden; /* 가로 스크롤 숨김 */
   scrollbar-width: thin; /* 스크롤바 두께 조절 (Firefox 전용) */

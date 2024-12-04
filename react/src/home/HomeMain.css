@@ -23,3 +23,28 @@
 .scrollable-card-container > * {
   flex: 0 0 auto; /* 가로 스크롤을 위해 추가 */
 }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: #333;
+  position: relative;
+  padding-left: 40px; /* 아이콘 공간 확보 */
+}
+
+.section-icon {
+  position: absolute;
+  left: 0;
+  font-size: 1.8rem;
+  margin-right: 10px;
+  color: #f17f42;
+}
+
+.section-highlight {
+  font-size: 1.2rem;
+  color: #f17f42;
+  margin-left: 5px;
+}
