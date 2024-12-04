@@ -18,29 +18,27 @@ def scrape_popup_info():
         popups = []
 
         # 팝업 정보 크롤링
-        popup_names = page.query_selector_all('.popup-name')  # 팝업 이름 추출
-        popup_locations = page.query_selector_all('.popup-location')  # 팝업 위치 추출
-        popup_dates = page.query_selector_all('.popup-date')  # 팝업 날짜 추출
         popup_details = page.query_selector_all('a.popup-img-wrap') # 모든 팝업의 상세 페이지 주소
         popup_img_elements = page.query_selector_all('.popup-img-wrap')
+        print("============", len(popup_details))
         
-        # 팝업 이미지와 링크 추출
-        for element in popup_img_elements:
-            img_tag = element.query_selector('img')  # 해당 요소 내의 img 태그를 찾음
-            if img_tag:
-                image_url = img_tag.get_attribute('src')  # 이미지 URL 추출
-            else:
-                print("이미지 태그를 찾을 수 없습니다.")
-        
-        for popup in popup_details:
-            detail_url = popup.get_attribute('href')  # href 속성 추출
+        for i in range(len(popup_names)):
+            detail_url = popup_details[i].get_attribute('href')  # href 속성 추출
 
+        popup_names = page.query_selector_all('h1.tit')  # 팝업 이름 추출
+        popup_locations = page.query_selector_all('.location')  # 팝업 위치 추출
+        popup_dates = page.query_selector_all('.date')  # 팝업 날짜 추출
         # 12월 포함 팝업만 필터링
         for i in range(len(popup_names)):
             name = popup_names[i].inner_text().strip()  # 팝업 이름
             location = popup_locations[i].inner_text().strip()  # 팝업 위치
             date = popup_dates[i].inner_text().strip()  # 팝업 날짜
-            #image_url  = popup_images[i].inner_text().strip()
+            img_tag = popup_img_elements[i].query_selector('img')  # 해당 요소 내의 img 태그를 찾음
+            if img_tag:
+                image_url = img_tag.get_attribute('src')  # 이미지 URL 추출
+            else:
+                print("이미지 태그를 찾을 수 없습니다.")
+            
             
             # 날짜 형식: 24.11.01 - 25.01.01, 24.12.01 - 24.12.31와 같은 날짜 범위
             match = re.match(r'(\d{2})\.(\d{2})\.(\d{2})\s*-\s*(\d{2})\.(\d{2})\.(\d{2})', date)

@@ -114,7 +114,9 @@ def crawl_festivals():
         if not festival_list:
             print(f"페이지 {start_page}에 데이터 없음. 크롤링 종료.")
             break
-
+        
+        id = 1
+        
         for festival in festival_list:
             title = festival.find('p', class_='tit').text.strip()
             title = re.sub(r"안내", "", title).strip()
@@ -131,8 +133,9 @@ def crawl_festivals():
                 start_date_obj, end_date_obj = None, None
 
             original_location, geocode_location, lat, lon = fetch_festival_details(detail_url)
-
+            
             festivals.append({
+                "id" : id,
                 "title": title,
                 "date": date,
                 "start_date": start_date_obj.strftime("%Y-%m-%d") if start_date_obj else None,
@@ -143,6 +146,7 @@ def crawl_festivals():
                 "longitude": lon,
                 "image_url": image_url
             })
+            id+=1
 
         start_page += 1
 
