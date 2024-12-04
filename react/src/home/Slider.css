@@ -9,7 +9,7 @@
 }
 
 .slider-item {
-  margin-left: 100px;
+  margin-left: 50px;
   color: #ffffff;
   text-align: left;
   position: absolute;
@@ -30,11 +30,11 @@
 }
 
 .slider-btn {
-  background-color: #f17f42;
-  color: #ffeee4;
+  background-color: white;
+  color: #f17f42;
   border: none;
   padding: 10px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   font-size: 20px;
   cursor: pointer;
   position: absolute;
@@ -46,6 +46,7 @@
 
 .slider-btn:hover {
   background-color: #ce6d39;
+  color: white;
 }
 
 .slider-btn.prev {

@@ -1,0 +1,138 @@
+.calendar-container {
+  position: relative;
+  /* margin: 20px; */
+  width: 50%;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  /* background: #ffeee4; */
+  color: #000;
+  /* border-radius: 12px; */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar__tile {
+  position: relative;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  height: 50px;
+  border: 1px solid #ffeee4;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: #f17f42;
+  color: #fff;
+}
+
+.react-calendar__navigation button {
+  background-color: #f17f42;
+  color: #fff;
+  border: none;
+  width: 130px;
+  height: 40px;
+  font-size: 18px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #ce6d39; /* 버튼 호버 색상 */
+}
+
+.react-calendar__tile--now {
+  background: #fcead6; /* 오늘 날짜 강조 */
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #f17f42;
+}
+
+.react-calendar__tile--active {
+  background: #f17f42; /* 선택된 날짜 강조 */
+  color: #fff;
+}
+
+.event-marker {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: #f17f42; /* 마커 배경색 */
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px; /* 폰트 크기 증가 */
+  text-align: center;
+  border-radius: 50%; /* 동그란 마커 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+.hover-popup {
+  position: absolute;
+  top: 100%; /* 달력 바로 아래 위치 */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #f17f42; /* 테두리 포인트 색상 */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: #000;
+  width: 250px; /* 팝업 너비 */
+  text-align: left; /* 텍스트 정렬 */
+}
+
+.hover-popup h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f17f42; /* 포인트 색상 */
+}
+
+.hover-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hover-popup li {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.calendar-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.selected-events-container {
+  width: 40%;
+  /* background: #ffeee4; */
+  padding: 20px;
+  /* border-radius: 12px; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selected-events-container h4 {
+  font-size: 18px;
+  color: #f17f42;
+  margin-bottom: 10px;
+}
+
+.selected-events-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-events-container li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
