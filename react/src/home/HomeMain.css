@@ -1,49 +1,50 @@
-/* 기본 스타일 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white; /* 페이지 전체 배경색 */
+.scrollable-card-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #f17f42 #ddd;
 }
 
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 2.5rem;
-  color: #333;
+.scrollable-card-container::-webkit-scrollbar {
+  height: 8px;
 }
 
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
+.scrollable-card-container::-webkit-scrollbar-thumb {
+  background: #f17f42;
+  border-radius: 10px;
 }
 
-.region-selector {
+.scrollable-card-container::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scrollable-card-container > * {
+  flex: 0 0 auto; /* 가로 스크롤을 위해 추가 */
+}
+
+.section-header {
   display: flex;
   align-items: center;
-  margin: 10px 20px;
-}
-
-.region-selector label {
-  margin-right: 10px;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: bold;
+  margin: 20px 0 10px;
+  color: #333;
+  position: relative;
+  padding-left: 40px; /* 아이콘 공간 확보 */
 }
 
-.region-selector select {
-  padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #ffeee4;
+.section-icon {
+  position: absolute;
+  left: 0;
+  font-size: 1.8rem;
+  margin-right: 10px;
+  color: #f17f42;
 }
 
-/* 카드 컨테이너 */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 20px;
+.section-highlight {
+  font-size: 1.2rem;
+  color: #f17f42;
+  margin-left: 5px;
 }
