@@ -18,7 +18,6 @@ function Search() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch festival data
     const fetchLocations = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:5000/festivals`);
@@ -26,13 +25,11 @@ function Search() {
           throw new Error('Failed to fetch festival data');
         }
         const data = await response.json();
-
         const enrichedLocations = data.map((location) => {
           const startDate = new Date(location.start_date);
           const endDate = new Date(location.end_date);
           const currentDate = new Date();
 
-          // 상태 추가 (진행 중 / D-Day 계산)
           let status = '';
           if (currentDate >= startDate && currentDate <= endDate) {
             status = '진행 중';
@@ -55,8 +52,6 @@ function Search() {
       }
     };
 
-    console.log('data:', locations);
-
     fetchLocations();
   }, []);
 
@@ -74,16 +69,11 @@ function Search() {
         });
 
         const data = response.data;
-        console.log('data:', data);
-
-        // 현재 날짜
         const currentDate = new Date();
 
         const enrichedFestivals = data.map((festival) => {
           const startDate = new Date(festival.start_date);
           const endDate = new Date(festival.end_date);
-          const currentDate = new Date();
-
           let status = '';
           if (currentDate >= startDate && currentDate <= endDate) {
             status = '진행 중';
@@ -127,6 +117,7 @@ function Search() {
     <div className="search-page">
       <h1>검색 결과</h1>
       <p>"{query}" 검색 결과</p>
+
       <div className="festivals-container">
         {filteredLocations &&
           filteredLocations.map((filteredLocation) => (
@@ -144,7 +135,7 @@ function Search() {
         <p>검색어를 입력해 주세요.</p>
       )}
 
-      {loading && <p className="loading-message">검색 중...</p>}
+      {loading && <div className="loading-spinner"></div>} {/* 로딩 스피너 */}
       {error && <p className="error-message">{error}</p>}
 
       <div className="festivals-container">
