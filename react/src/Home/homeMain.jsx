@@ -146,6 +146,7 @@ function HomeMain() {
             key={location.id}
             location={location}
             onClick={() => handleCardClick(location)}
+            isEndingSoon={true}
           />
         ))}
       </div>

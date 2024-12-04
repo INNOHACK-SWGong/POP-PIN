@@ -1,22 +1,40 @@
 import React from 'react';
 import './LocationCard.css';
 
-function LocationCard({ location, onClick }) {
+function LocationCard({ location, onClick, isEndingSoon }) {
   const today = new Date();
 
   const getStatus = () => {
     const startDate = new Date(location.start_date);
     const endDate = new Date(location.end_date);
 
-    if (today > endDate) {
-      return '종료됨';
-    } else if (today >= startDate) {
-      return '진행 중';
+    // "filterEndingSoonFestivals"일 때 다른 로직 적용
+    if (isEndingSoon) {
+      if (today >= startDate && today <= endDate) {
+        const differenceInDays = Math.ceil(
+          (endDate - today) / (1000 * 60 * 60 * 24)
+        );
+        return `종료 D-${differenceInDays}`;
+      } else if (today > endDate) {
+        return '종료됨';
+      } else {
+        const differenceInDays = Math.ceil(
+          (startDate - today) / (1000 * 60 * 60 * 24)
+        );
+        return `시작 D-${differenceInDays}`;
+      }
     } else {
-      const differenceInDays = Math.ceil(
-        (startDate - today) / (1000 * 60 * 60 * 24)
-      );
-      return `D-${differenceInDays}`;
+      // 기본 로직
+      if (today > endDate) {
+        return '종료됨';
+      } else if (today >= startDate) {
+        return '진행 중';
+      } else {
+        const differenceInDays = Math.ceil(
+          (startDate - today) / (1000 * 60 * 60 * 24)
+        );
+        return `시작 D-${differenceInDays}`;
+      }
     }
   };
 
