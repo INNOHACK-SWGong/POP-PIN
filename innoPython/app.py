@@ -5,42 +5,54 @@ import openai
 import os
 from dotenv import load_dotenv
 
+# .env 파일에서 환경 변수 로드
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
+# OpenAI API 키 설정
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route('/festivals', methods=['GET'])
 def get_festivals():
     try:
+        # festivals.json 파일에서 축제 데이터 읽기
         with open("festivals.json", "r", encoding="utf-8") as f:
             festivals = json.load(f)
-        # JSON 데이터 UTF-8로 반환
-        return Response(json.dumps(festivals, ensure_ascii=False, indent=4), content_type="application/json; charset=utf-8")
-    except FileNotFoundError:
-        return jsonify({"error": "JSON 파일을 찾을 수 없습니다. 먼저 크롤링을 실행하세요."}), 404
+        
+        # 축제 데이터를 JSON 형식으로 반환
+        return jsonify(festivals), 200
+
+    except Exception as e:
+        # 에러 발생 시 메시지 반환
+        return jsonify({"message": "축제 데이터를 가져오는 중 오류가 발생했습니다.", "error": str(e)}), 500
 
 @app.route('/openai', methods=['POST'])
 def process_festival_data():
-    data = request.get_json()
-    festival = data.get("festival")
-    
-    if not festival:
-        return jsonify({"message": "축제 정보가 없습니다."}), 400
-
-    # 예시: openai API를 사용하여 특정 작업을 처리하는 코드
     try:
-        # 예시로 GPT-3를 사용하여 축제 관련 정보를 생성하는 코드
-        response = openai.Completion.create(
-            engine="text-davinci-003",  # 엔진 이름을 설정
-            prompt=f"Tell me about the festival: {festival['title']}. It starts on {festival['start_date']} and ends on {festival['end_date']}.",
-            max_tokens=100
+        # POST 요청으로 받은 JSON 데이터 처리
+        data = request.get_json()
+        festival = data.get("festival")
+        
+        if not festival:
+            return jsonify({"message": "축제 정보가 없습니다."}), 400
+
+        # OpenAI API로 축제 데이터 처리 (예시: gpt-3.5-turbo 모델 사용)
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # 사용하려는 모델
+            messages=[
+                {"role": "system", "content": "축제 데이터에 대한 분석을 진행합니다."},
+                {"role": "user", "content": festival["title"]}
+            ]
         )
-        return jsonify({"message": response.choices[0].text.strip()})
+
+        # OpenAI API로부터 받은 응답 반환
+        return jsonify(response.choices[0].message["content"]), 200
+
     except Exception as e:
-        return jsonify({"message": f"OpenAI API 오류: {str(e)}"}), 500
+        return jsonify({"message": "OpenAI 처리 중 오류가 발생했습니다.", "error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)

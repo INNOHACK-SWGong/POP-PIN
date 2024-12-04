@@ -10,33 +10,41 @@ function DetailPage() {
   const startDate = new Date(festival.start_date);
   const endDate = new Date(festival.end_date);
 
-  const [statusMessage, setStatusMessage] = useState('');
+  const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+
+  const [statusMessage, setStatusMessage] = useState(''); // 로딩 상태
 
   useEffect(() => {
     // 서버로 데이터를 전송하는 예시
     const fetchFestivalData = async () => {
+      setStatusMessage('데이터를 불러오는 중...');
+
       try {
-        const response = await fetch('http://localhost:5000/openai', {
+        const response = await fetch(`http://127.0.0.1:5000/openai`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ festival }),
+          body: JSON.stringify({
+            festival: festival,
+          }),
         });
 
         if (response.ok) {
           const data = await response.json();
-          setStatusMessage(data.message); // 서버로부터 받은 메시지를 표시
+          console.log(data);
+          setStatusMessage(data);
         } else {
-          setStatusMessage('서버 오류가 발생했습니다.');
+          setStatusMessage('서버 오류가 발생했습니다. 다시 시도해 주세요.');
         }
       } catch (error) {
-        setStatusMessage('네트워크 오류가 발생했습니다.');
+        setStatusMessage('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
+        console.error('Error fetching festival data:', error);
       }
     };
 
     fetchFestivalData();
-  }, [festival]);
+  }, [festival]); // festival이 변경될 때마다 서버 요청을 보냄
 
   // Generate ±5 days around today
   const generateCalendarDates = () => {
