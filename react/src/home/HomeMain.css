@@ -1,49 +1,25 @@
-/* 기본 스타일 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white; /* 페이지 전체 배경색 */
-}
-
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.region-selector {
+.scrollable-card-container {
   display: flex;
-  align-items: center;
-  margin: 10px 20px;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #f17f42 #ddd;
 }
 
-.region-selector label {
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: bold;
+.scrollable-card-container::-webkit-scrollbar {
+  height: 8px;
 }
 
-.region-selector select {
-  padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #ffeee4;
+.scrollable-card-container::-webkit-scrollbar-thumb {
+  background: #f17f42;
+  border-radius: 10px;
 }
 
-/* 카드 컨테이너 */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 20px;
+.scrollable-card-container::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scrollable-card-container > * {
+  flex: 0 0 auto; /* 가로 스크롤을 위해 추가 */
 }

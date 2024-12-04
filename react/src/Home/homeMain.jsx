@@ -20,7 +20,6 @@ function HomeMain() {
           throw new Error('Failed to fetch festival data');
         }
         const data = await response.json();
-        console.log(`data:`, data);
 
         const enrichedLocations = data.map((location, index) => {
           const startDate = new Date(location.start_date);
@@ -57,12 +56,54 @@ function HomeMain() {
     navigate(`/detail/${location.id}`, { state: location });
   };
 
+  const filterNearbyFestivals = () => {
+    // Dummy logic: Replace this with actual location-based filtering
+    return locations.filter((location) => location.distance <= 5);
+  };
+
+  const filterEndingSoonFestivals = () => {
+    const currentDate = new Date();
+    return locations.filter((location) => {
+      const endDate = new Date(location.end_date);
+      const differenceInDays = Math.ceil(
+        (endDate - currentDate) / (1000 * 60 * 60 * 24)
+      );
+      return differenceInDays > 0 && differenceInDays <= 5;
+    });
+  };
+
   return (
     <div>
       <Slider data={locations} onCardClick={handleCardClick} />
       <CalendarView events={locations} />
+
+      {/* 내 주변 축제 */}
+      <h2>내 주변 축제에요! (5km 이내)</h2>
+      <div className="scrollable-card-container">
+        {filterNearbyFestivals().map((location) => (
+          <LocationCard
+            key={location.id}
+            location={location}
+            onClick={() => handleCardClick(location)}
+          />
+        ))}
+      </div>
+
+      {/* 곧 종료돼요 */}
+      <h2>곧 종료돼요! (5일 이내 종료)</h2>
+      <div className="scrollable-card-container">
+        {filterEndingSoonFestivals().map((location) => (
+          <LocationCard
+            key={location.id}
+            location={location}
+            onClick={() => handleCardClick(location)}
+          />
+        ))}
+      </div>
+
+      {/* 모든 축제 */}
       <h2>모든 축제를 확인하세요!</h2>
-      <div className="card-container">
+      <div className="scrollable-card-container">
         {locations.map((location) => (
           <LocationCard
             key={location.id}
@@ -71,6 +112,7 @@ function HomeMain() {
           />
         ))}
       </div>
+
       {error && <p className="error">{error}</p>}
     </div>
   );
