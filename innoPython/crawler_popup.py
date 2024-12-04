@@ -1,4 +1,33 @@
+import os
+import requests
 from playwright.sync_api import sync_playwright
+from dotenv import load_dotenv
+
+# .env 파일 로드
+load_dotenv()
+
+# Kakao API 키 로드
+kakao_api_key = os.getenv("KAKAO_API_KEY")
+
+def get_kakao_lat_lon(location_name):
+    """카카오 API로 위도와 경도 가져오기"""
+    headers = {"Authorization": f"KakaoAK {kakao_api_key}"}
+    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
+    params = {"query": location_name}
+
+    response = requests.get(url, headers=headers, params=params)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if data['documents']:
+            latitude = data['documents'][0]['y']  # 위도
+            longitude = data['documents'][0]['x']  # 경도
+            return latitude, longitude
+        else:
+            return None, None
+    else:
+        return None, None
+
 
 def scrape_popup_info():
     with sync_playwright() as p:

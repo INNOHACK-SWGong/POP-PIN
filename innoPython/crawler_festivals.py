@@ -137,7 +137,7 @@ def crawl_festivals():
                 "date": date,
                 "start_date": start_date_obj.strftime("%Y-%m-%d") if start_date_obj else None,
                 "end_date": end_date_obj.strftime("%Y-%m-%d") if end_date_obj else None,
-                "original_location": original_location,
+                "location": original_location,
                 "geocode_location": geocode_location,
                 "latitude": lat,
                 "longitude": lon,
