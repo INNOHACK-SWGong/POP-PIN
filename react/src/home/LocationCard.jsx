@@ -16,7 +16,7 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         );
         return {
           status: '진행 중',
-          alternativeStatus: `종료 D-${differenceInDays - 1}`,
+          alternativeStatus: `종료 D-${differenceInDays}`,
           statusClass: '진행중',
           alternativeStatusClass: 'd',
         };
@@ -34,8 +34,8 @@ function LocationCard({ location, onClick, isEndingSoon }) {
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
         return {
-          status: `시작 D-${differenceInDays - 1}`,
-          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+          status: `시작 D-${differenceInDays}`,
+          alternativeStatus: `종료 D-${differenceInDays1}`,
           statusClass: 'start',
           alternativeStatusClass: 'd',
         };
@@ -54,7 +54,7 @@ function LocationCard({ location, onClick, isEndingSoon }) {
         );
         return {
           status: '진행 중',
-          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+          alternativeStatus: `종료 D-${differenceInDays1}`,
           statusClass: '진행중',
           alternativeStatusClass: 'd',
         };
@@ -66,8 +66,8 @@ function LocationCard({ location, onClick, isEndingSoon }) {
           (endDate - today) / (1000 * 60 * 60 * 24)
         );
         return {
-          status: `시작 D-${differenceInDays - 1}`,
-          alternativeStatus: `종료 D-${differenceInDays1 - 1}`,
+          status: `시작 D-${differenceInDays}`,
+          alternativeStatus: `종료 D-${differenceInDays1}`,
           statusClass: 'start',
           alternativeStatusClass: 'd',
         };

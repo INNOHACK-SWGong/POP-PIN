@@ -197,9 +197,8 @@ function DetailPage() {
           <img src={image_url} alt={title} loading="lazy" />
         </div>
         <div className="detail-info">
-          <h1 className="detail-title">
-            {title} <p className={`detail-status ${statusClass}`}>{status}</p>
-          </h1>
+          <h1 className="detail-title">{title}</h1>
+          <p className={`detail-status ${statusClass}`}>{status}</p>
           <p className="detail-date">
             <strong>시작일:</strong> {start_date}
           </p>
