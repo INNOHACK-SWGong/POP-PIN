@@ -1,3 +1,6 @@
+* 팝Pin
+* ![image](https://github.com/user-attachments/assets/fedc4c2f-4418-40fa-9116-e7b2b512897e)
+
 **서비스명**
 
 팝Pin
