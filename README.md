@@ -1,5 +1,5 @@
-* 팝Pin
-* ![image](https://github.com/user-attachments/assets/fedc4c2f-4418-40fa-9116-e7b2b512897e)
+# 팝Pin
+![image](https://github.com/user-attachments/assets/fedc4c2f-4418-40fa-9116-e7b2b512897e)
 
 **서비스명**
 
@@ -17,11 +17,7 @@
 
 # 세부 내용
 
-**사용기술, 구현방안 등 작품에 대한 자세한 사항을 자유롭게 알려주세요.**
-
----
-
-- **사용 기술 :**
+**사용 기술 :**
 
 React
 
@@ -29,7 +25,7 @@ Python, Flask, Beautiful Soup, Playwright
 
 OpenAI, ChatGPT
 
-- **구현 내용 :**
+**구현 내용 :**
 
 <Backend>
 
@@ -81,8 +77,6 @@ OpenAI, ChatGPT
     - react의 날짜 계산에서 문제점인 00시 00분으로 설정되어 D-Day가 이상하게 표시되는 문제 해결
 
 # 기대 효과
-
----
 
 - 정보 접근성 향상
     - 문화 행사 정보가 통합되어 정보 접근 용이
