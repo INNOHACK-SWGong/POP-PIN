@@ -1,6 +1,3 @@
-# 팝Pin
-![image](https://github.com/user-attachments/assets/fedc4c2f-4418-40fa-9116-e7b2b512897e)
-
 **서비스명**
 
 팝Pin
@@ -8,6 +5,7 @@
 **한줄 소개**
 
 문화 행사와 팝업스토어 정보를 쉽게 접근할 수 있도록 도와, 문화 참여 기회를 놓친 사람들에게 더 많은 경험을 제공하는 웹 서비스입니다.
+![image](https://github.com/user-attachments/assets/fedc4c2f-4418-40fa-9116-e7b2b512897e)
 
 **개발 동기**
 
@@ -19,11 +17,11 @@
 
 **사용 기술 :**
 
-React
+**Front** - React
 
-Python, Flask, Beautiful Soup, Playwright
+**Back** - Python, Flask, Beautiful Soup, Playwright
 
-OpenAI, ChatGPT
+**AI** - OpenAI, ChatGPT
 
 **구현 내용 :**
 
